@@ -14,6 +14,12 @@ namespace BL
         {
             return innehall.Any((g) => String.Equals(g, nyttInnehall, StringComparison.OrdinalIgnoreCase));
         }
+
+
+
+
+
+
     }
 
   
