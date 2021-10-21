@@ -1,21 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using System.Threading.Tasks;
+using BL;
 
 namespace PL1
 {
     public partial class Form1 : Form
     {
+
+        CancellationTokenSource cts = new CancellationTokenSource(); // tillåter timed out för vår async
+
+
         public Form1()
         {
             InitializeComponent();
         }
+
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -46,5 +49,28 @@ namespace PL1
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (txtUrl.Text != null 
+                && cbxFrekvens.SelectedItem != null 
+                && cbxKategori.SelectedItem != null)
+            {
+                if (Validering.CheckURL(txtUrl.Text))
+                {
+                   
+                }
+                else
+                {
+                    MessageBox.Show("Kontrollera om du skrev rätt URL!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Kontrollera om du har fyllt alla fält!");
+            }
+        }
+
+
     }
 }
