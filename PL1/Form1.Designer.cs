@@ -32,9 +32,9 @@ namespace PL1
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.txtUrl = new System.Windows.Forms.TextBox();
+            this.cbxFrekvens = new System.Windows.Forms.ComboBox();
+            this.cbxKategori = new System.Windows.Forms.ComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.Avsnitt = new System.Windows.Forms.ColumnHeader();
@@ -64,6 +64,7 @@ namespace PL1
             this.button1.TabIndex = 0;
             this.button1.Text = "Lägga till";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -83,37 +84,38 @@ namespace PL1
             this.button3.Text = "Ta bort";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtUrl
             // 
-            this.textBox1.Location = new System.Drawing.Point(17, 428);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(407, 39);
-            this.textBox1.TabIndex = 3;
+            this.txtUrl.Location = new System.Drawing.Point(17, 428);
+            this.txtUrl.Name = "txtUrl";
+            this.txtUrl.Size = new System.Drawing.Size(407, 39);
+            this.txtUrl.TabIndex = 3;
             // 
-            // comboBox1
+            // cbxFrekvens
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(441, 427);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(249, 40);
-            this.comboBox1.TabIndex = 4;
+            this.cbxFrekvens.FormattingEnabled = true;
+            this.cbxFrekvens.Location = new System.Drawing.Point(441, 427);
+            this.cbxFrekvens.Name = "cbxFrekvens";
+            this.cbxFrekvens.Size = new System.Drawing.Size(249, 40);
+            this.cbxFrekvens.TabIndex = 4;
             // 
-            // comboBox2
+            // cbxKategori
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(721, 427);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(242, 40);
-            this.comboBox2.TabIndex = 5;
+            this.cbxKategori.FormattingEnabled = true;
+            this.cbxKategori.Location = new System.Drawing.Point(721, 427);
+            this.cbxKategori.Name = "cbxKategori";
+            this.cbxKategori.Size = new System.Drawing.Size(242, 40);
+            this.cbxKategori.TabIndex = 5;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 32;
             this.listBox1.Items.AddRange(new object[] {
-            "Hi",
-            "Hi",
-            "Hi"});
+            "Artikel 1",
+            "Artikel 2",
+            "Artikel 3",
+            "Artikel 4"});
             this.listBox1.Location = new System.Drawing.Point(721, 39);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(637, 292);
@@ -163,6 +165,11 @@ namespace PL1
             // 
             this.listBox2.FormattingEnabled = true;
             this.listBox2.ItemHeight = 32;
+            this.listBox2.Items.AddRange(new object[] {
+            "Titel 1",
+            "Titel 2",
+            "Titel 3",
+            "Titel 4"});
             this.listBox2.Location = new System.Drawing.Point(15, 521);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(464, 228);
@@ -297,9 +304,9 @@ namespace PL1
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cbxKategori);
+            this.Controls.Add(this.cbxFrekvens);
+            this.Controls.Add(this.txtUrl);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -316,9 +323,9 @@ namespace PL1
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox txtUrl;
+        private System.Windows.Forms.ComboBox cbxFrekvens;
+        private System.Windows.Forms.ComboBox cbxKategori;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader Avsnitt;
