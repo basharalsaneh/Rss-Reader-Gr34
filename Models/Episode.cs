@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    class Episode
+    public class Episode
     {
+        public string Title { get; set; }
+
+        public string Summary { get; set; }
+
+        public Episode(string title, string summary)
+        {
+            Title = title;
+            Summary = summary;
+      
+        }
     }
 }

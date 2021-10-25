@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Threading.Tasks;
 using BL;
+using Models;
 
 namespace PL1
 {
@@ -10,11 +11,14 @@ namespace PL1
     {
 
         CancellationTokenSource cts = new CancellationTokenSource(); // tillåter timed out för vår async
-
-
+        RssHandler rssReader;
+        FeedHandler feedHandler;
+        
         public Form1()
         {
             InitializeComponent();
+            rssReader = new RssHandler();
+            feedHandler = new FeedHandler();
         }
 
 
@@ -22,6 +26,7 @@ namespace PL1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
 
         }
 
@@ -52,13 +57,26 @@ namespace PL1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (txtUrl.Text != null 
-                && cbxFrekvens.SelectedItem != null 
-                && cbxKategori.SelectedItem != null)
+            if (txtUrl.Text != null) 
+                //&& cbxFrekvens.SelectedItem != null 
+                //&& cbxKategori.SelectedItem != null)
             {
                 if (Validering.CheckURL(txtUrl.Text))
                 {
-                   
+                    rssReader.GetRss(txtUrl.Text);
+                    
+                    Feed feed = feedHandler.GetFeedByUrl(txtUrl.Text);
+
+                    foreach (Episode episode in feed.EpisodeList)
+                    {
+                        //item1.SubItems.Add(episode.Title);
+                        listBox1.Items.Add(episode.Title);
+                    }
+                    ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString());
+                    listViewItem.SubItems.Add(feed.Title);
+
+
+
                 }
                 else
                 {
@@ -70,6 +88,8 @@ namespace PL1
                 MessageBox.Show("Kontrollera om du har fyllt alla fält!");
             }
         }
+
+      
 
 
     }
