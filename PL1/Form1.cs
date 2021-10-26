@@ -45,7 +45,7 @@ namespace PL1
 
                 int episodeIndex = listBox1.SelectedIndex;
                 int feedIndex = listView1.SelectedItems[0].Index;
-                string description = FeedRepository.HamtaAvsnittsBeskrivning(feedIndex, episodeIndex);
+                string description = feedHandler.HamtaAvsnittsBeskrivning(feedIndex, episodeIndex);
                 UppdateraLista(textBox3, description);
             }
             else
@@ -98,8 +98,8 @@ namespace PL1
                     }
                     ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
                     listViewItem.SubItems.Add(feed.Title); // Titel
-                    listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString()); // Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
-                    //listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
+                    //listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString()); // Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
+                    listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
                     listViewItem.SubItems.Add(feed.Category.Title); // Kategori
                     
 
@@ -153,7 +153,32 @@ namespace PL1
             }
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
 
-    
-}
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 1)
+            {
+                feedHandler.removeFeed(listView1.SelectedItems[0].Index);
+                listView1.Items.Clear();
+
+        foreach(Feed feed in feedHandler.GetAllFeeds())
+                {
+                    ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
+                    listViewItem.SubItems.Add(feed.Title); // Titel
+                    //listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString()); // Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
+                    listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
+                    listViewItem.SubItems.Add(feed.Category.Title); // Kategori
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Du har inte valt någonting, eller så har du valt fler än en sak!");
+            }
+        }
+    }
 }
