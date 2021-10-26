@@ -86,6 +86,7 @@ namespace PL1
             this.button3.TabIndex = 2;
             this.button3.Text = "Ta bort";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // txtUrl
             // 
@@ -172,7 +173,6 @@ namespace PL1
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(465, 228);
             this.listBox2.TabIndex = 9;
-            //this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
             // textBox2
             // 
@@ -295,6 +295,7 @@ namespace PL1
             this.button7.TabIndex = 24;
             this.button7.Text = "Radera RSS feed";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // Form1
             // 

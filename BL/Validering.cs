@@ -36,7 +36,7 @@ namespace BL
         {
             bool isValid = true;
 
-            FeedRepository feedRepository = new FeedRepository();
+            feedHandler feedRepository = new feedHandler();
 
             if (!feedRepository.GetAll().Exists(x => x.Url.Equals(url)))
             {

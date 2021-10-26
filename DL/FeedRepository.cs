@@ -7,7 +7,7 @@ using Models;
 
 namespace DL
 {
-    public class FeedRepository : IRepository<Feed>
+    public class feedHandler : IRepository<Feed>
     {
        private static List<Feed> listOfFeeds = new List<Feed>();
 
@@ -47,10 +47,15 @@ namespace DL
             return index;
         }
 
-        public static string HamtaAvsnittsBeskrivning(int valdFeed, int valtAvsnitt)
+        public string HamtaAvsnittsBeskrivning(int valdFeed, int valtAvsnitt)
         {
             return listOfFeeds[valdFeed].EpisodeList[valtAvsnitt].Summary;
         }
 
+        public void removeFeed(int valtIndex)
+        {
+            listOfFeeds.Remove(listOfFeeds[valtIndex]);
+
+        }
     }
 }
