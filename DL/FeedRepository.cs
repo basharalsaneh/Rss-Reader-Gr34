@@ -11,6 +11,7 @@ namespace DL
     {
        private static List<Feed> listOfFeeds = new List<Feed>();
 
+
         public void Add(Feed feed)
         {
             listOfFeeds.Add(feed);
@@ -26,6 +27,11 @@ namespace DL
             Feed feed = listOfFeeds.FirstOrDefault(feed => feed.Url.Equals(url));
             return feed;
 
+        }
+
+        public static string HamtaAvsnittsBeskrivning(int valdFeed, int valtAvsnitt)
+        {
+            return listOfFeeds[valdFeed].EpisodeList[valtAvsnitt].Summary;
         }
 
     }

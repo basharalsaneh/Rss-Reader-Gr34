@@ -13,6 +13,7 @@ namespace Models
         public int NumberOfEpisodes { get; set; }
         public string Title { get; set; }
 
+
         public Feed(string url, List<Episode> episodes, int numberOfEpisodes, string title)
         {
             Url = url;

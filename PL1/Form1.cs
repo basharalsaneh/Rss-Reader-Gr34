@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BL;
 using Models;
+using DL;
 
 namespace PL1
 {
@@ -29,10 +30,25 @@ namespace PL1
 
 
         }
-
+        public static void UppdateraLista(TextBox box, string innehall)
+        {
+            box.Clear();
+            box.Text = innehall;
+        }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listView1.SelectedItems.Count == 1)
+            {
 
+                int episodeIndex = listBox1.SelectedIndex;
+                int feedIndex = listView1.SelectedItems[0].Index;
+                string description = FeedRepository.HamtaAvsnittsBeskrivning(feedIndex, episodeIndex);
+                UppdateraLista(textBox3, description);
+            }
+            else
+            {
+                textBox3.Clear();
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,7 +77,9 @@ namespace PL1
                 //&& cbxFrekvens.SelectedItem != null 
                 //&& cbxKategori.SelectedItem != null)
             {
-                if (Validering.CheckURL(txtUrl.Text))
+                string nyFeedURL = txtUrl.Text;
+
+                if (Validering.CheckURL(nyFeedURL))
                 {
                     rssReader.GetRss(txtUrl.Text);
                     
@@ -89,8 +107,9 @@ namespace PL1
             }
         }
 
-      
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }
