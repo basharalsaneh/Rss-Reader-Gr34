@@ -11,6 +11,7 @@ namespace DL
     {
        private static List<Feed> listOfFeeds = new List<Feed>();
 
+
         public void Add(Feed feed)
         {
             if (!listOfFeeds.Exists(x => x.Url.Equals(feed.Url)))
@@ -44,6 +45,11 @@ namespace DL
         {
             int index = listOfFeeds.FindIndex(f => f.Url.Equals(url));
             return index;
+        }
+
+        public static string HamtaAvsnittsBeskrivning(int valdFeed, int valtAvsnitt)
+        {
+            return listOfFeeds[valdFeed].EpisodeList[valtAvsnitt].Summary;
         }
 
     }
