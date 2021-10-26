@@ -115,7 +115,7 @@ namespace PL1
             }
             else
             {
-                MessageBox.Show("Kontrollera om du har fyllt alla fält!");
+                MessageBox.Show("Kontrollera att du angett en kategori");
             }
         }
 

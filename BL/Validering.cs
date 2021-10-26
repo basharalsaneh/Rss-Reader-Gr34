@@ -43,7 +43,6 @@ namespace BL
                 isValid = false;
             }
 
-
             return isValid;
 
         }
