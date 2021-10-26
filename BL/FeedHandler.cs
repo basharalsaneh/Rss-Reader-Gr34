@@ -27,10 +27,19 @@ namespace BL
         }
             
 
-        public void CreateFeed(string url, List<Episode> episodes, int numberOfEpisodes, string title)
+        public void CreateFeed(string url, List<Episode> episodes, int numberOfEpisodes, string title, Category category)
         {
-            Feed feed = new Feed(url, episodes, numberOfEpisodes, title);
+            Feed feed = new Feed(url, episodes, numberOfEpisodes, title, category);
+
+
             feedRepository.Add(feed);
+
+            
+        }
+
+       public int GetFeedIndex(string url)
+        {
+            return feedRepository.GetIndex(url);
         }
 
 

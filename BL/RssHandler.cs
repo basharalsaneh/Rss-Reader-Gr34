@@ -16,11 +16,14 @@ namespace BL
     public class RssHandler
     {
 
-        public void GetRss(string url)
+       
+        public void GetRss(string url, string category)
         {
+            
             FeedHandler feedHandler = new FeedHandler();
             EpisodeHandler episodeHandler = new EpisodeHandler();
-
+            CategoryHandler categoryHandler = new CategoryHandler();
+            
             SyndicationFeed syndicationFeed = SyndicationFeed.Load(XmlReader.Create(url));
             foreach (SyndicationItem item in syndicationFeed.Items)
             {
@@ -29,7 +32,9 @@ namespace BL
                 episodeHandler.CreateEpisode(title, summary);
             }
 
-            feedHandler.CreateFeed(url, episodeHandler.GetAllEpisodes(), episodeHandler.GetAllEpisodes().Count, syndicationFeed.Title.Text);
+            categoryHandler.CreateCategory(category);
+
+            feedHandler.CreateFeed(url, episodeHandler.GetAllEpisodes(), episodeHandler.GetAllEpisodes().Count, syndicationFeed.Title.Text, categoryHandler.GetCategoryByName(category));
         }
 
 

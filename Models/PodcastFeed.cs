@@ -8,7 +8,7 @@ namespace Models
 {
     class PodcastFeed : Feed
     {
-        public PodcastFeed(string url, List<Episode> episodes, int numberOfEpisodes, string title) : base(url, episodes, numberOfEpisodes, title)
+        public PodcastFeed(string url, List<Episode> episodes, int numberOfEpisodes, string title, Category category) : base(url, episodes, numberOfEpisodes, title, category)
         {
 
         }

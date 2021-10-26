@@ -14,12 +14,15 @@ namespace PL1
         CancellationTokenSource cts = new CancellationTokenSource(); // tillåter timed out för vår async
         RssHandler rssReader;
         FeedHandler feedHandler;
+        CategoryHandler categoryHandler;
         
         public Form1()
         {
             InitializeComponent();
             rssReader = new RssHandler();
             feedHandler = new FeedHandler();
+            categoryHandler = new CategoryHandler();
+            FillComboBoxes();
         }
 
 
@@ -71,17 +74,20 @@ namespace PL1
 
         }
 
+        //Skapa ny feed
         private void button1_Click(object sender, EventArgs e)
         {
             if (txtUrl.Text != null) 
                 //&& cbxFrekvens.SelectedItem != null 
                 //&& cbxKategori.SelectedItem != null)
             {
-                string nyFeedURL = txtUrl.Text;
 
-                if (Validering.CheckURL(nyFeedURL))
+                if (Validering.CheckURL(txtUrl.Text) && !Validering.FeedExists(txtUrl.Text))
+
                 {
-                    rssReader.GetRss(txtUrl.Text);
+                    listBox1.Items.Clear(); // Rensa listan innan den uppdateras med nytt innehåll
+
+                    rssReader.GetRss(txtUrl.Text, (string)cbxKategori.SelectedItem);
                     
                     Feed feed = feedHandler.GetFeedByUrl(txtUrl.Text);
 
@@ -90,9 +96,12 @@ namespace PL1
                         //item1.SubItems.Add(episode.Title);
                         listBox1.Items.Add(episode.Title);
                     }
-                    ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString());
-                    listViewItem.SubItems.Add(feed.Title);
-
+                    ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
+                    listViewItem.SubItems.Add(feed.Title); // Titel
+                    listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString()); // Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
+                    //listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
+                    listViewItem.SubItems.Add(feed.Category.Title); // Kategori
+                    
 
 
                 }
@@ -107,8 +116,43 @@ namespace PL1
             }
         }
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+
+        //Skapa ny kategori
+        private void button6_Click(object sender, EventArgs e) 
         {
+            if (Validering.CheckTextInput(textBox2.Text))
+            {
+                listBox2.Items.Clear(); // Rensa listan innan den uppdateras med nytt innehåll
+               
+                categoryHandler.CreateCategory(textBox2.Text);
+
+                foreach(Category category in categoryHandler.GetAllCategories())
+                {
+                    listBox2.Items.Add(category.Title);
+                }
+                FillCategoryBox();
+            }
+            else
+            {
+                MessageBox.Show("Kontrollera om du har fyllt alla fält!");
+            }
+        }
+
+        private void FillComboBoxes()
+        {
+            FillCategoryBox();
+        }
+
+        private void FillCategoryBox()
+        {
+            cbxKategori.Items.Clear();
+
+            foreach (Category category in categoryHandler.GetAllCategories())
+            {
+                cbxKategori.Items.Add(category.Title);
+            }
+        }
+
 
         }
     }
