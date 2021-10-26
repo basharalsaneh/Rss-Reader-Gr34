@@ -10,10 +10,10 @@ namespace BL
 {
     public class FeedHandler
     {
-        FeedRepository feedRepository;
+        feedHandler feedRepository;
         public FeedHandler()
         {
-             feedRepository = new FeedRepository();
+             feedRepository = new feedHandler();
         }
 
         public Feed GetFeedByUrl(string url)
@@ -42,6 +42,16 @@ namespace BL
             return feedRepository.GetIndex(url);
         }
 
+        public string HamtaAvsnittsBeskrivning(int valdFeed, int valtAvsnitt)
+        {
+          return  feedRepository.HamtaAvsnittsBeskrivning(valdFeed, valtAvsnitt);
+        }
+
+
+        public void removeFeed(int valtIndex)
+        {
+            feedRepository.removeFeed(valtIndex);
+        }
 
     }
 }
