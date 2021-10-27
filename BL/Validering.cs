@@ -34,16 +34,31 @@ namespace BL
 
         public static bool FeedExists(string url)
         {
-            bool isValid = true;
+            bool itExists = true;
 
-            feedHandler feedRepository = new feedHandler();
+            FeedRepository feedRepository = new FeedRepository();
 
             if (!feedRepository.GetAll().Exists(x => x.Url.Equals(url)))
             {
-                isValid = false;
+                itExists = false;
             }
 
-            return isValid;
+            return itExists;
+
+        }
+
+        public static bool CategoryExists(string categoryName)
+        {
+            bool itExists = true;
+
+            CategoryRepository categoryRepository  = new CategoryRepository();
+
+            if (!categoryRepository.GetAll().Exists(x => x.Title.Equals(categoryName)))
+            {
+                itExists = false;
+            }
+
+            return itExists;
 
         }
 

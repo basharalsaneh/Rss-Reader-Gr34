@@ -17,7 +17,7 @@ namespace BL
     {
 
        
-        public void GetRss(string url, string category)
+        public void GetRss(string url, Category category)
         {
             
             FeedHandler feedHandler = new FeedHandler();
@@ -32,9 +32,9 @@ namespace BL
                 episodeHandler.CreateEpisode(title, summary);
             }
 
-            categoryHandler.CreateCategory(category);
+            //categoryHandler.GetCategoryByName(category);
 
-            feedHandler.CreateFeed(url, episodeHandler.GetAllEpisodes(), episodeHandler.GetAllEpisodes().Count, syndicationFeed.Title.Text, categoryHandler.GetCategoryByName(category));
+            feedHandler.CreateFeed(url, episodeHandler.GetAllEpisodes(), episodeHandler.GetAllEpisodes().Count, syndicationFeed.Title.Text, category);
         }
 
 
