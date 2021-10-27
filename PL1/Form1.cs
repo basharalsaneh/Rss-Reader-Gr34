@@ -37,7 +37,7 @@ namespace PL1
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            string[] listOfFrequencies = feedRepository.LasInFrekvenser();
+            string[] listOfFrequencies = FeedHandler.LoadFrekvens();
             UppdateraLista(cbxFrekvens, listOfFrequencies);
         }
         public static void UppdateraLista(TextBox box, string innehall)

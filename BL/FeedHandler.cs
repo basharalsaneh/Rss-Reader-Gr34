@@ -61,6 +61,9 @@ namespace BL
         }
 
 
-
+        public static string[] LoadFrekvens()
+        {
+            return FeedRepository.LoadFrekvens();
+        }
     }
 }
