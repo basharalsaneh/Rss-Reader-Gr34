@@ -14,7 +14,8 @@ namespace Models
         public string Title { get; set; }
         public Category Category { get; set; }
 
-
+        public string UppdateringsFrekvens { get; set; }
+        public DateTime SenastUppdaterad { get; set; }
 
         public Feed(string url, List<Episode> episodes, int numberOfEpisodes, string title, Category category)
 

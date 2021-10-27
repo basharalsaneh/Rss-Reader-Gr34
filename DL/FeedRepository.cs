@@ -7,7 +7,7 @@ using Models;
 
 namespace DL
 {
-    public class feedHandler : IRepository<Feed>
+    public class feedRepository : IRepository<Feed>
     {
        private static List<Feed> listOfFeeds = new List<Feed>();
 
@@ -57,5 +57,13 @@ namespace DL
             listOfFeeds.Remove(listOfFeeds[valtIndex]);
 
         }
+
+
+        public static string[] LasInFrekvenser()
+        {
+            return Frekvens.LoadFrekvenser();
+        }
+
+
     }
 }

@@ -10,10 +10,10 @@ namespace BL
 {
     public class FeedHandler
     {
-        feedHandler feedRepository;
+        feedRepository feedRepository;
         public FeedHandler()
         {
-             feedRepository = new feedHandler();
+             feedRepository = new feedRepository();
         }
 
         public Feed GetFeedByUrl(string url)
@@ -52,6 +52,8 @@ namespace BL
         {
             feedRepository.removeFeed(valtIndex);
         }
+
+
 
     }
 }
