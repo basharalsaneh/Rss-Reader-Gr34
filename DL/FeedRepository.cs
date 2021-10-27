@@ -7,23 +7,16 @@ using Models;
 
 namespace DL
 {
-    public class feedHandler : IRepository<Feed>
+    public class FeedRepository : IRepository<Feed>
     {
        private static List<Feed> listOfFeeds = new List<Feed>();
 
 
         public void Add(Feed feed)
         {
-            if (!listOfFeeds.Exists(x => x.Url.Equals(feed.Url)))
-            {
-                listOfFeeds.Add(feed);
-            }
-            else
-            {
-                
-            }
 
-               
+            listOfFeeds.Add(feed);
+
         }
 
         public List<Feed> GetAll()
@@ -52,10 +45,17 @@ namespace DL
             return listOfFeeds[valdFeed].EpisodeList[valtAvsnitt].Summary;
         }
 
-        public void removeFeed(int valtIndex)
+        public void RemoveFeed(int valtIndex)
         {
             listOfFeeds.Remove(listOfFeeds[valtIndex]);
 
+            //Feed feed = listOfFeeds.FirstOrDefault(feed => feed.Title.Equals(valtIndex));
+            //listOfFeeds.Remove(feed);
+        }
+
+        public void RemoveFeed(Category category) //Method overloading
+        {
+            listOfFeeds.RemoveAll(feed => feed.Category.Equals(category));
         }
     }
 }

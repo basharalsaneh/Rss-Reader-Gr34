@@ -10,10 +10,10 @@ namespace BL
 {
     public class FeedHandler
     {
-        feedHandler feedRepository;
+        FeedRepository feedRepository;
         public FeedHandler()
         {
-             feedRepository = new feedHandler();
+             feedRepository = new FeedRepository();
         }
 
         public Feed GetFeedByUrl(string url)
@@ -48,9 +48,14 @@ namespace BL
         }
 
 
-        public void removeFeed(int valtIndex)
+        public void RemoveFeed(int valtIndex)
         {
-            feedRepository.removeFeed(valtIndex);
+            feedRepository.RemoveFeed(valtIndex);
+        }
+
+        public void RemoveFeed(Category category) // Method overloading
+        {
+            feedRepository.RemoveFeed(category);
         }
 
     }

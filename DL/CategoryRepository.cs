@@ -9,10 +9,11 @@ namespace DL
 {
     public class CategoryRepository : IRepository<Category>
     {
-        List<Category> listOfCategories = new List<Category>();
+        private static List<Category> listOfCategories = new List<Category>();
 
         public void Add(Category category)
         {
+
             listOfCategories.Add(category);
         }
 
@@ -25,6 +26,11 @@ namespace DL
         {
             Category category = listOfCategories.FirstOrDefault(category => category.Title.Equals(name));
             return category;
+        }
+
+        public void Delete(int index)
+        {
+            listOfCategories.Remove(listOfCategories[index]);
         }
 
 
