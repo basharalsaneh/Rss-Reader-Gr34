@@ -60,7 +60,7 @@ namespace DL
         }
 
 
-        public static string[] LasInFrekvenser()
+        public static string[] LoadFrekvens()
         {
             return Frekvens.LoadFrekvenser();
         }
