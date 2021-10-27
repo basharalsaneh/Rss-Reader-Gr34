@@ -36,7 +36,9 @@ namespace BL
         {
             bool itExists = true;
 
+
             FeedRepository feedRepository = new FeedRepository();
+
 
             if (!feedRepository.GetAll().Exists(x => x.Url.Equals(url)))
             {

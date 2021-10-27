@@ -7,6 +7,7 @@ using Models;
 
 namespace DL
 {
+
     public class FeedRepository : IRepository<Feed>
     {
        private static List<Feed> listOfFeeds = new List<Feed>();
@@ -57,5 +58,13 @@ namespace DL
         {
             listOfFeeds.RemoveAll(feed => feed.Category.Equals(category));
         }
+
+
+        public static string[] LasInFrekvenser()
+        {
+            return Frekvens.LoadFrekvenser();
+        }
+
+
     }
 }

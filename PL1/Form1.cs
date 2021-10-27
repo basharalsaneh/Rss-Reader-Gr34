@@ -25,12 +25,20 @@ namespace PL1
         }
 
 
-
+        public static void UppdateraLista(ComboBox box, string[] innehall)
+        {
+            box.Items.Clear();
+            foreach (var item in innehall)
+            {
+                box.Items.Add(item);
+            }
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
-
+            string[] listOfFrequencies = feedRepository.LasInFrekvenser();
+            UppdateraLista(cbxFrekvens, listOfFrequencies);
         }
         public static void UppdateraLista(TextBox box, string innehall)
         {
@@ -79,8 +87,10 @@ namespace PL1
         private void button1_Click(object sender, EventArgs e)
         {
             if (txtUrl.Text != null 
-                //&& cbxFrekvens.SelectedItem != null 
+
+                && cbxFrekvens.SelectedItem != null 
                 && cbxKategori.SelectedItem != null)
+
             {
 
                 if (Validering.CheckURL(txtUrl.Text) && !Validering.FeedExists(txtUrl.Text))
