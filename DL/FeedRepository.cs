@@ -55,9 +55,10 @@ namespace DL
 
         }
 
-        public int GetIndex(string url)
+
+        public int GetIndex(string name)
         {
-            int index = listOfFeeds.FindIndex(f => f.Url.Equals(url));
+            int index = GetAll().FindIndex(f => f.Title.Equals(name));
             return index;
         }
 
