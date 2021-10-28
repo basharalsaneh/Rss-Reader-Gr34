@@ -68,5 +68,10 @@ namespace BL
         {
             return FeedRepository.LoadFrekvens();
         }
+
+
+
+
+
     }
 }

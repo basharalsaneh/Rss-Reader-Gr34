@@ -18,6 +18,7 @@ namespace DL
             listOfFeeds = GetAll();
         }
 
+
         public void Add(Feed feed)
         {
 
@@ -108,6 +109,9 @@ namespace DL
             serializer.Serialize(listOfFeeds);
             //serializer.SerializeFeed(listOfFeeds);
         }
+
+
+
 
 
     }

@@ -5,17 +5,21 @@ using System.Threading.Tasks;
 using BL;
 using Models;
 using DL;
+using System.Collections.Generic;
 
 namespace PL1
 {
     public partial class Form1 : Form
     {
 
-        CancellationTokenSource cts = new CancellationTokenSource(); // tillåter timed out för vår async
+
         RssHandler rssReader;
         FeedHandler feedHandler;
         CategoryHandler categoryHandler;
-        
+
+
+
+
         public Form1()
         {
             InitializeComponent();
@@ -27,13 +31,23 @@ namespace PL1
         }
 
 
-        public static void UppdateraLista(ComboBox box, string[] innehall)
+
+
+
+        public static void UppdateraLista(ComboBox box, string[] content)
         {
             box.Items.Clear();
-            foreach (var item in innehall)
+            foreach (var item in content)
             {
                 box.Items.Add(item);
             }
+        }
+
+
+        public static void UppdateraLista(TextBox box, string content)
+        {
+            box.Clear();
+            box.Text = content;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -43,11 +57,7 @@ namespace PL1
             UppdateraLista(cbxFrekvens, listOfFrequencies);
             UpdateFeedContent();
         }
-        public static void UppdateraLista(TextBox box, string innehall)
-        {
-            box.Clear();
-            box.Text = innehall;
-        }
+
 
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,6 +75,10 @@ namespace PL1
                 textBox3.Clear();
             }
         }
+
+
+
+        
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -90,7 +104,6 @@ namespace PL1
         private void button1_Click(object sender, EventArgs e)
         {
             if (txtUrl.Text != null 
-
                 && cbxFrekvens.SelectedItem != null 
                 && cbxKategori.SelectedItem != null)
 
@@ -114,10 +127,14 @@ namespace PL1
                     }
                     ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
                     listViewItem.SubItems.Add(feed.Title); // Titel
+
+                    //listViewItem.SubItems.Add(cbxFrekvens.SelectedItem.ToString()); // Frekvens "Bashar"
+
                     listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString()); // Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
+
                     //listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
                     listViewItem.SubItems.Add(feed.Category.Title); // Kategori
-                    
+
 
 
                 }
@@ -262,6 +279,11 @@ namespace PL1
             }
         }
 
+
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
         private void btnSaveFeeds_Click(object sender, EventArgs e)
         {
             
