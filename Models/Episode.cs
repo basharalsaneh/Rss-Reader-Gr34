@@ -18,5 +18,10 @@ namespace Models
             Summary = summary;
       
         }
+
+        private Episode()
+        {
+
+        }
     }
 }

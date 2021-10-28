@@ -19,22 +19,30 @@ namespace BL
        
         public void GetRss(string url, Category category)
         {
-            
-            FeedHandler feedHandler = new FeedHandler();
-            EpisodeHandler episodeHandler = new EpisodeHandler();
-            CategoryHandler categoryHandler = new CategoryHandler();
-            
-            SyndicationFeed syndicationFeed = SyndicationFeed.Load(XmlReader.Create(url));
-            foreach (SyndicationItem item in syndicationFeed.Items)
+            try
             {
-                string title = item.Title.Text;
-                string summary = item.Summary.Text;
-                episodeHandler.CreateEpisode(title, summary);
+                FeedHandler feedHandler = new FeedHandler();
+                EpisodeHandler episodeHandler = new EpisodeHandler();
+                CategoryHandler categoryHandler = new CategoryHandler();
+
+                SyndicationFeed syndicationFeed = SyndicationFeed.Load(XmlReader.Create(url));
+                foreach (SyndicationItem item in syndicationFeed.Items)
+                {
+                    string title = item.Title.Text;
+                    string summary = item.Summary.Text;
+                    episodeHandler.CreateEpisode(title, summary);
+                }
+
+                //categoryHandler.GetCategoryByName(category);
+
+                feedHandler.CreateFeed(url, episodeHandler.GetAllEpisodes(), episodeHandler.GetAllEpisodes().Count, syndicationFeed.Title.Text, category);
             }
+            catch(Exception e)
+            {
 
-            //categoryHandler.GetCategoryByName(category);
-
-            feedHandler.CreateFeed(url, episodeHandler.GetAllEpisodes(), episodeHandler.GetAllEpisodes().Count, syndicationFeed.Title.Text, category);
+                
+            }
+            
         }
 
 

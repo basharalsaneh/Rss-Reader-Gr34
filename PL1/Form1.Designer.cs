@@ -98,6 +98,7 @@ namespace PL1
             // 
             // cbxFrekvens
             // 
+            this.cbxFrekvens.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxFrekvens.FormattingEnabled = true;
             this.cbxFrekvens.Location = new System.Drawing.Point(237, 200);
             this.cbxFrekvens.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
