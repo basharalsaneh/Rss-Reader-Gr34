@@ -23,6 +23,7 @@ namespace BL
             return feedRepository.GetFeed(url);
         }
 
+
         public List<Feed> GetAllFeeds()
         {
             return feedRepository.GetAll();
@@ -38,9 +39,9 @@ namespace BL
             
         }
 
-       public int GetFeedIndex(string url)
+       public int GetFeedIndex(string name)
         {
-            return feedRepository.GetIndex(url);
+            return feedRepository.GetIndex(name);
         }
 
         public string HamtaAvsnittsBeskrivning(int valdFeed, int valtAvsnitt)
