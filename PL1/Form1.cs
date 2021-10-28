@@ -115,7 +115,7 @@ namespace PL1
 
                     //rssReader.GetRss(txtUrl.Text, (string)cbxKategori.SelectedItem);
 
-                    rssReader.GetRss(txtUrl.Text, categoryHandler.GetCategoryByName((string)cbxKategori.SelectedItem));
+                    rssReader.GetRss(txtUrl.Text, categoryHandler.GetCategoryByName((string)cbxKategori.SelectedItem), (string)(cbxFrekvens.SelectedItem));
 
                     //Feed feed = feedHandler.GetFeedByUrl(txtUrl.Text);
 
@@ -132,22 +132,6 @@ namespace PL1
 
                     UpdateFeedContent();
                     
-
-                    foreach (Episode episode in feed.EpisodeList)
-                    {
-                        //item1.SubItems.Add(episode.Title);
-                        listBox1.Items.Add(episode.Title);
-                    }
-                    ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
-                    listViewItem.SubItems.Add(feed.Title); // Titel
-
-                    //listViewItem.SubItems.Add(cbxFrekvens.SelectedItem.ToString()); // Frekvens "Bashar"
-
-                    listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString()); // Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
-
-                    //listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
-                    listViewItem.SubItems.Add(feed.Category.Title); // Kategori
-
 
 
 
@@ -232,7 +216,8 @@ namespace PL1
             {
                 ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
                 listViewItem.SubItems.Add(feed.Title); // Titel
-                listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString()); // Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
+                //listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString());
+                listViewItem.SubItems.Add(feed.UppdateringsFrekvens);// Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
                 //listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
                 listViewItem.SubItems.Add(feed.Category.Title); // Kategori
             }
