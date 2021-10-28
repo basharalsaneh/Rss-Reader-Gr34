@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Models
 {
+    [Serializable]
     public class Feed
     {
+        
         public string Url { get; set; }
+        
         public List<Episode> EpisodeList { get; set; }
+        
         public int NumberOfEpisodes { get; set; }
+        
         public string Title { get; set; }
+        
         public Category Category { get; set; }
 
         public string UppdateringsFrekvens { get; set; }
@@ -27,5 +34,9 @@ namespace Models
             Category = category;
         }
 
+        private Feed()
+        {
+
+        }
     }
 }

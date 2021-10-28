@@ -33,7 +33,6 @@ namespace BL
         {
             Feed feed = new Feed(url, episodes, numberOfEpisodes, title, category);
 
-
             feedRepository.Add(feed);
 
             
@@ -50,9 +49,9 @@ namespace BL
         }
 
 
-        public void RemoveFeed(int valtIndex)
+        public void RemoveFeed(string title)
         {
-            feedRepository.RemoveFeed(valtIndex);
+            feedRepository.RemoveFeed(title);
         }
 
         public void RemoveFeed(Category category) // Method overloading
@@ -60,6 +59,10 @@ namespace BL
             feedRepository.RemoveFeed(category);
         }
 
+        public void UpdateFeedCategory(string oldCategory, string newCategory)
+        {
+            feedRepository.UpdateFeedCategory(oldCategory, newCategory);
+        }
 
         public static string[] LoadFrekvens()
         {
