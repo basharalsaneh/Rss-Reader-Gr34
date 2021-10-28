@@ -18,20 +18,13 @@ namespace DL
             "1 vecka"
         };
 
-        public enum Frekvenser
-        {
-            min,
-            timme,
-            dag,
-            vecka,
-        }
 
         public static string[] LoadFrekvenser()
         {
             return frekvensLista;
         }
 
+      
 
-    
     }
 }

@@ -13,6 +13,7 @@ namespace DL
        private static List<Feed> listOfFeeds = new List<Feed>();
 
 
+
         public void Add(Feed feed)
         {
 
@@ -46,6 +47,8 @@ namespace DL
             return listOfFeeds[valdFeed].EpisodeList[valtAvsnitt].Summary;
         }
 
+
+
         public void RemoveFeed(int valtIndex)
         {
             listOfFeeds.Remove(listOfFeeds[valtIndex]);
@@ -64,6 +67,9 @@ namespace DL
         {
             return Frekvens.LoadFrekvenser();
         }
+
+
+
 
 
     }
