@@ -11,24 +11,43 @@ namespace DL
     public class FeedRepository : IRepository<Feed>
     {
        private static List<Feed> listOfFeeds = new List<Feed>();
+        FeedSerializer serializer = new FeedSerializer();
 
+        public FeedRepository()
+        {
+            listOfFeeds = GetAll();
+        }
 
 
         public void Add(Feed feed)
         {
 
             listOfFeeds.Add(feed);
+            SaveChanges();
 
         }
 
         public List<Feed> GetAll()
         {
-            return listOfFeeds;
+            //return listOfFeeds;
+
+            List<Feed> listOfFeedsDeserialized = new List<Feed>();
+            try
+            {
+                listOfFeedsDeserialized = serializer.Deserialize();
+            }
+            catch (Exception)
+            {
+                
+
+            }
+
+            return listOfFeedsDeserialized;
         }
 
         public Feed GetFeed(string url)
         {
-            Feed feed = listOfFeeds.FirstOrDefault(feed => feed.Url.Equals(url));
+            Feed feed = GetAll().FirstOrDefault(feed => feed.Url.Equals(url));
             return feed;
 
             //Feed feed = listOfFeeds.Select(feed => feed).Where(feed => feed.Url.Equals(url));
@@ -47,25 +66,48 @@ namespace DL
             return listOfFeeds[valdFeed].EpisodeList[valtAvsnitt].Summary;
         }
 
-
-
-        public void RemoveFeed(int valtIndex)
+        public void RemoveFeed(string title)
         {
-            listOfFeeds.Remove(listOfFeeds[valtIndex]);
+            //listOfFeeds.Remove(listOfFeeds[valtIndex]);
 
-            //Feed feed = listOfFeeds.FirstOrDefault(feed => feed.Title.Equals(valtIndex));
-            //listOfFeeds.Remove(feed);
+            Feed feed = listOfFeeds.FirstOrDefault(feed => feed.Title.Equals(title));
+            listOfFeeds.Remove(feed);
+            SaveChanges();
         }
 
         public void RemoveFeed(Category category) //Method overloading
         {
-            listOfFeeds.RemoveAll(feed => feed.Category.Equals(category));
+            //Feed feed = listOfFeeds.FirstOrDefault(feed => feed.Category.Title.Equals(category.Title));
+            listOfFeeds.RemoveAll(feed => feed.Category.Title.Equals(category.Title));
+
+            //listOfFeeds.RemoveAll(feed => feed.Category.Equals(category));
+            SaveChanges();
+        }
+
+        public void UpdateFeedCategory(string oldCategory, string newCategory)
+        {
+            //listOfFeeds.Where(x => x.Category.Title.Equals(oldCategory));
+
+            foreach(Feed feed in listOfFeeds)
+            {
+                if(feed.Category.Title.Equals(oldCategory))
+                {
+                    feed.Category.Title = newCategory;
+                }
+            }
+            SaveChanges();
         }
 
 
         public static string[] LoadFrekvens()
         {
             return Frekvens.LoadFrekvenser();
+        }
+
+        public void SaveChanges()
+        {
+            serializer.Serialize(listOfFeeds);
+            //serializer.SerializeFeed(listOfFeeds);
         }
 
 

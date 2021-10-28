@@ -37,10 +37,12 @@ namespace BL
             bool itExists = true;
 
 
-            FeedRepository feedRepository = new FeedRepository();
+            //FeedRepository feedRepository = new FeedRepository();
+            FeedHandler feedHandler = new FeedHandler();
 
 
-            if (!feedRepository.GetAll().Exists(x => x.Url.Equals(url)))
+
+            if (!feedHandler.GetAllFeeds().Exists(x => x.Url.Equals(url)))
             {
                 itExists = false;
             }
@@ -53,9 +55,11 @@ namespace BL
         {
             bool itExists = true;
 
-            CategoryRepository categoryRepository  = new CategoryRepository();
+            //CategoryRepository categoryRepository  = new CategoryRepository();
+            CategoryHandler categoryHandler = new CategoryHandler();
+            
 
-            if (!categoryRepository.GetAll().Exists(x => x.Title.Equals(categoryName)))
+            if (!categoryHandler.GetAllCategories().Exists(x => x.Title.Equals(categoryName)))
             {
                 itExists = false;
             }

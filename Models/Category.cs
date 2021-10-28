@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
+    [Serializable]
     public class Category
     {
         public string Title { get; set; }
@@ -13,6 +14,11 @@ namespace Models
         public Category(string title)
         {
             Title = title;
+        }
+
+        private Category()
+        {
+
         }
     }
 }

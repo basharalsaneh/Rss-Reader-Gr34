@@ -26,6 +26,8 @@ namespace PL1
             rssReader = new RssHandler();
             feedHandler = new FeedHandler();
             categoryHandler = new CategoryHandler();
+            UpdateCategoryContent();
+            UpdateFeedContent();
         }
 
 
@@ -53,6 +55,7 @@ namespace PL1
 
             string[] listOfFrequencies = FeedHandler.LoadFrekvens();
             UppdateraLista(cbxFrekvens, listOfFrequencies);
+            UpdateFeedContent();
         }
 
 
@@ -124,7 +127,11 @@ namespace PL1
                     }
                     ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
                     listViewItem.SubItems.Add(feed.Title); // Titel
-                    listViewItem.SubItems.Add(cbxFrekvens.SelectedItem.ToString()); // Frekvens 
+
+                    //listViewItem.SubItems.Add(cbxFrekvens.SelectedItem.ToString()); // Frekvens "Bashar"
+
+                    listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString()); // Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
+
                     //listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
                     listViewItem.SubItems.Add(feed.Category.Title); // Kategori
 
@@ -190,8 +197,8 @@ namespace PL1
             {
                 ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
                 listViewItem.SubItems.Add(feed.Title); // Titel
-                                                       //listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString()); // Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
-                listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
+                listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString()); // Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
+                //listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
                 listViewItem.SubItems.Add(feed.Category.Title); // Kategori
             }
         }
@@ -201,11 +208,13 @@ namespace PL1
 
         }
 
+        // Ta bort feed
         private void button7_Click(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count == 1)
             {
-                feedHandler.RemoveFeed(listView1.SelectedItems[0].Index);
+                
+                feedHandler.RemoveFeed(listView1.SelectedItems[0].SubItems[1].Text);
                 MessageBox.Show(listView1.SelectedItems[0].SubItems[1].Text);
                 UpdateFeedContent();
 
@@ -221,19 +230,20 @@ namespace PL1
         {
             if (listBox2.SelectedItems.Count == 1)
             { 
-                DialogResult dialogResult = MessageBox.Show("Radera alla feeds som tillhör denna kategori?", "Varning!", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Radera kategorin och alla feeds som tillhör den?", "Varning!", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
                 {
+                    MessageBox.Show(listBox2.SelectedItems[0].ToString());
                     Category category = categoryHandler.GetCategoryByName(listBox2.SelectedItems[0].ToString());
                     feedHandler.RemoveFeed(category);
-                    categoryHandler.RemoveCategory(listBox2.SelectedIndex);
-                    UpdateCategoryContent();
+                    categoryHandler.RemoveCategory(listBox2.SelectedItems[0].ToString());
                     UpdateFeedContent();
+                    UpdateCategoryContent();
                     MessageBox.Show(categoryHandler.GetAllCategories().Count.ToString());
                 }
                 else if (dialogResult == DialogResult.No)
                 {
-                    MessageBox.Show("Inga feeds har raderats");
+                    MessageBox.Show("Inga feeds eller kategorier har raderats");
                 }
             }
             else
@@ -250,8 +260,10 @@ namespace PL1
                 MessageBox.Show((listBox2.SelectedItems[0].ToString()));
                 if (!Validering.CategoryExists(textBox2.Text))
                 {
-                    Category category = categoryHandler.GetCategoryByName(listBox2.SelectedItems[0].ToString());
-                    category.Title = textBox2.Text;
+                    //Category category = categoryHandler.GetCategoryByName(listBox2.SelectedItems[0].ToString());
+                    //category.Title = textBox2.Text;
+                    categoryHandler.EditCategory(listBox2.SelectedItems[0].ToString(), textBox2.Text);
+                    feedHandler.UpdateFeedCategory(listBox2.SelectedItems[0].ToString(), textBox2.Text);
                     UpdateCategoryContent();
                     UpdateFeedContent();
                     //categoryHandler.GetCategoryByName
@@ -271,7 +283,15 @@ namespace PL1
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-         
+        }
+        private void btnSaveFeeds_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnGetFeeds_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }
