@@ -24,7 +24,7 @@ namespace Models
         public string UppdateringsFrekvens { get; set; }
         public DateTime SenastUppdaterad { get; set; }
 
-        public Feed(string url, List<Episode> episodes, int numberOfEpisodes, string title, Category category)
+        public Feed(string url, List<Episode> episodes, int numberOfEpisodes, string title, Category category, string frekvens)
 
         {
             Url = url;
@@ -32,6 +32,7 @@ namespace Models
             NumberOfEpisodes = numberOfEpisodes;
             Title = title;
             Category = category;
+            UppdateringsFrekvens = frekvens;
         }
 
         private Feed()

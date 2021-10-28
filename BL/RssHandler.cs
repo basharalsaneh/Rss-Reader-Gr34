@@ -17,7 +17,7 @@ namespace BL
     {
 
        
-        public void GetRss(string url, Category category)
+        public void GetRss(string url, Category category, string frekvens)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace BL
 
                 //categoryHandler.GetCategoryByName(category);
 
-                feedHandler.CreateFeed(url, episodeHandler.GetAllEpisodes(), episodeHandler.GetAllEpisodes().Count, syndicationFeed.Title.Text, category);
+                feedHandler.CreateFeed(url, episodeHandler.GetAllEpisodes(), episodeHandler.GetAllEpisodes().Count, syndicationFeed.Title.Text, category, frekvens);
             }
             catch(Exception e)
             {
