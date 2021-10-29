@@ -53,7 +53,6 @@ namespace PL1
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
-            this.btnSort = new System.Windows.Forms.Button();
             this.txtBoxNewName = new System.Windows.Forms.TextBox();
             this.lblNewName = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -294,16 +293,6 @@ namespace PL1
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // btnSort
-            // 
-            this.btnSort.Location = new System.Drawing.Point(109, 158);
-            this.btnSort.Name = "btnSort";
-            this.btnSort.Size = new System.Drawing.Size(75, 23);
-            this.btnSort.TabIndex = 25;
-            this.btnSort.Text = "Sortera";
-            this.btnSort.UseVisualStyleBackColor = true;
-            this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
-            // 
             // txtBoxNewName
             // 
             this.txtBoxNewName.Location = new System.Drawing.Point(474, 201);
@@ -327,7 +316,6 @@ namespace PL1
             this.ClientSize = new System.Drawing.Size(757, 426);
             this.Controls.Add(this.lblNewName);
             this.Controls.Add(this.txtBoxNewName);
-            this.Controls.Add(this.btnSort);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -383,7 +371,6 @@ namespace PL1
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button btnSort;
         private System.Windows.Forms.TextBox txtBoxNewName;
         private System.Windows.Forms.Label lblNewName;
     }

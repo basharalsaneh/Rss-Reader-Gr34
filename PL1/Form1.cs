@@ -320,28 +320,28 @@ namespace PL1
         //Sortera feeds efter vald kategori
         private void btnSort_Click(object sender, EventArgs e)
         {
-            if (listBox2.SelectedItems.Count == 1)
-            {
-                MessageBox.Show((listBox2.SelectedItems[0].ToString()));
-                {
-                    listView1.Items.Clear();
+            //if (listBox2.SelectedItems.Count == 1)
+            //{
+            //    MessageBox.Show((listBox2.SelectedItems[0].ToString()));
+            //    {
+            //        listView1.Items.Clear();
 
-                    Category category = categoryHandler.GetCategoryByName(listBox2.SelectedItems[0].ToString());
+            //        Category category = categoryHandler.GetCategoryByName(listBox2.SelectedItems[0].ToString());
 
-                    foreach(Feed feed in feedHandler.GetAllFeedsByCategory(category))
-                    {
-                        ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString());
-                        listViewItem.SubItems.Add(feed.Title); 
-                        listViewItem.SubItems.Add(feed.UppdateringsFrekvens);
-                        listViewItem.SubItems.Add(feed.Category.Title); 
-                    }
+            //        foreach(Feed feed in feedHandler.GetAllFeedsByCategory(category))
+            //        {
+            //            ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString());
+            //            listViewItem.SubItems.Add(feed.Title); 
+            //            listViewItem.SubItems.Add(feed.UppdateringsFrekvens);
+            //            listViewItem.SubItems.Add(feed.Category.Title); 
+            //        }
 
-                }
-            }
-            else
-            {
-                MessageBox.Show("Markera kategorin du vill sortera efter i listan nedanför");
-            }
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Markera kategorin du vill sortera efter i listan nedanför");
+            //}
         }
 
         //Uppdatera feed
