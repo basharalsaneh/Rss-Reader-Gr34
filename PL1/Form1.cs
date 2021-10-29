@@ -52,7 +52,7 @@ namespace PL1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            cbxKategori.SelectedIndex = 0;
             string[] listOfFrequencies = FeedHandler.LoadFrekvens();
             UppdateraLista(cbxFrekvens, listOfFrequencies);
             UpdateFeedContent();
@@ -111,27 +111,33 @@ namespace PL1
                 if (Validering.CheckURL(txtUrl.Text) && !Validering.FeedExists(txtUrl.Text))
 
                 {
-                    listBox1.Items.Clear(); // Rensa listan innan den uppdateras med nytt innehåll
+                    if (!cbxKategori.SelectedItem.ToString().Equals("-")) {
+                        listBox1.Items.Clear(); // Rensa listan innan den uppdateras med nytt innehåll
 
-                    //rssReader.GetRss(txtUrl.Text, (string)cbxKategori.SelectedItem);
+                        //rssReader.GetRss(txtUrl.Text, (string)cbxKategori.SelectedItem);
 
-                    rssReader.GetRss(txtUrl.Text, categoryHandler.GetCategoryByName((string)cbxKategori.SelectedItem), (string)(cbxFrekvens.SelectedItem));
+                        rssReader.GetRss(txtUrl.Text, categoryHandler.GetCategoryByName((string)cbxKategori.SelectedItem), (string)(cbxFrekvens.SelectedItem));
 
-                    //Feed feed = feedHandler.GetFeedByUrl(txtUrl.Text);
+                        //Feed feed = feedHandler.GetFeedByUrl(txtUrl.Text);
 
-                    //foreach (Episode episode in feed.EpisodeList)
-                    //{
-                    //    //item1.SubItems.Add(episode.Title);
-                    //    listBox1.Items.Add(episode.Title);
-                    //}
-                    //ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
-                    //listViewItem.SubItems.Add(feed.Title); // Titel
-                    //listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString()); // Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
-                    ////listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
-                    //listViewItem.SubItems.Add(feed.Category.Title); // Kategori
+                        //foreach (Episode episode in feed.EpisodeList)
+                        //{
+                        //    //item1.SubItems.Add(episode.Title);
+                        //    listBox1.Items.Add(episode.Title);
+                        //}
+                        //ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
+                        //listViewItem.SubItems.Add(feed.Title); // Titel
+                        //listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString()); // Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
+                        ////listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
+                        //listViewItem.SubItems.Add(feed.Category.Title); // Kategori
 
-                    UpdateFeedContent();
-                    
+                        UpdateFeedContent();
+
+                    }
+
+                    else {
+                        MessageBox.Show("Välj rätt kategori till podden!");
+                    }
 
 
 
@@ -199,12 +205,13 @@ namespace PL1
         {
             cbxKategori.Items.Clear();
             listBox2.Items.Clear();
-
+            cbxKategori.Items.Add("-");
             foreach (Category category in categoryHandler.GetAllCategories())
             {
                 cbxKategori.Items.Add(category.Title);
                 listBox2.Items.Add(category.Title);
             }
+
         }
 
         private void UpdateFeedContent()
@@ -320,17 +327,34 @@ namespace PL1
             listView1.Items.Clear();
 
 
-            foreach (Feed feed in feedHandler.GetAllFeeds())
-            {
-                if (feed.Category.Title.ToString().Equals (valdKat)){
-                    ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
-                    listViewItem.SubItems.Add(feed.Title); // Titel
-                                                           //listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString());
-                    listViewItem.SubItems.Add(feed.UppdateringsFrekvens);// Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
-                                                                         //listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
-                    listViewItem.SubItems.Add(feed.Category.Title); // Kategori
+            if (valdKat.Equals("-")) {
+
+                foreach (Feed feed in feedHandler.GetAllFeeds())
+                {
+                    
+                        ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
+                        listViewItem.SubItems.Add(feed.Title); // Titel
+                                                               //listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString());
+                        listViewItem.SubItems.Add(feed.UppdateringsFrekvens);// Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
+                                                                             //listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
+                        listViewItem.SubItems.Add(feed.Category.Title); // Kategori
+
                 }
+            }
+
+            else { 
+                foreach (Feed feed in feedHandler.GetAllFeeds())
+                {
+                    if (feed.Category.Title.ToString().Equals (valdKat)){
+                        ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
+                        listViewItem.SubItems.Add(feed.Title); // Titel
+                                                               //listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString());
+                        listViewItem.SubItems.Add(feed.UppdateringsFrekvens);// Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
+                                                                             //listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
+                        listViewItem.SubItems.Add(feed.Category.Title); // Kategori
+                    }
                 
+                }
             }
         }
     }

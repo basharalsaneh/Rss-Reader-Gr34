@@ -111,6 +111,8 @@ namespace PL1
             // 
             this.cbxKategori.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxKategori.FormattingEnabled = true;
+            this.cbxKategori.Items.AddRange(new object[] {
+            "-"});
             this.cbxKategori.Location = new System.Drawing.Point(444, 267);
             this.cbxKategori.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.cbxKategori.Name = "cbxKategori";
