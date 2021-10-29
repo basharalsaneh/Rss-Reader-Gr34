@@ -313,5 +313,25 @@ namespace PL1
         {
            
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var valdKat = cbxKategori.SelectedItem.ToString();
+            listView1.Items.Clear();
+
+
+            foreach (Feed feed in feedHandler.GetAllFeeds())
+            {
+                if (feed.Category.Title.ToString().Equals (valdKat)){
+                    ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
+                    listViewItem.SubItems.Add(feed.Title); // Titel
+                                                           //listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString());
+                    listViewItem.SubItems.Add(feed.UppdateringsFrekvens);// Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
+                                                                         //listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
+                    listViewItem.SubItems.Add(feed.Category.Title); // Kategori
+                }
+                
+            }
+        }
     }
 }
