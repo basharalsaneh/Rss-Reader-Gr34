@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using BL;
 using Models;
-using DL;
 using System.Collections.Generic;
 
 namespace PL1
@@ -26,8 +25,9 @@ namespace PL1
             rssReader = new RssHandler();
             feedHandler = new FeedHandler();
             categoryHandler = new CategoryHandler();
-            UpdateCategoryContent();
-            UpdateFeedContent();
+            //UpdateCategoryContent();
+            //UpdateFeedContent();
+            UpdateContent();
         }
 
 
@@ -55,8 +55,7 @@ namespace PL1
 
             string[] listOfFrequencies = FeedHandler.LoadFrekvens();
             UppdateraLista(cbxFrekvens, listOfFrequencies);
-            UpdateFeedContent();
-        }
+            UpdateContent();        }
 
 
 
@@ -65,10 +64,19 @@ namespace PL1
             if (listView1.SelectedItems.Count == 1)
             {
 
+                //int episodeIndex = listBox1.SelectedIndex;
+                //int feedIndex = listView1.SelectedItems[0].Index;
+                //string description = feedHandler.HamtaAvsnittsBeskrivning(feedIndex, episodeIndex);
+                //UppdateraLista(textBox3, description);
+
+                int feedIndex = feedHandler.GetFeedIndex(listView1.SelectedItems[0].SubItems[1].Text);
+                //Feed feed = feedHandler.GetAllFeeds()[feedIndex];
+
                 int episodeIndex = listBox1.SelectedIndex;
-                int feedIndex = listView1.SelectedItems[0].Index;
+
                 string description = feedHandler.HamtaAvsnittsBeskrivning(feedIndex, episodeIndex);
                 UppdateraLista(textBox3, description);
+
             }
             else
             {
@@ -108,32 +116,24 @@ namespace PL1
                 && cbxKategori.SelectedItem != null)
             {
 
-                if (Validering.CheckURL(txtUrl.Text) && !Validering.FeedExists(txtUrl.Text))
+                if (Validering.CheckURL(txtUrl.Text) && !Validering.CheckIfFeedExistsByUrl(txtUrl.Text))
 
                 {
                     listBox1.Items.Clear(); // Rensa listan innan den uppdateras med nytt innehåll
 
-                    //rssReader.GetRss(txtUrl.Text, (string)cbxKategori.SelectedItem);
-
                     rssReader.GetRss(txtUrl.Text, categoryHandler.GetCategoryByName((string)cbxKategori.SelectedItem), (string)(cbxFrekvens.SelectedItem));
 
-                    //Feed feed = feedHandler.GetFeedByUrl(txtUrl.Text);
-
-                    //foreach (Episode episode in feed.EpisodeList)
+                    if(Validering.CheckTextInput(txtBoxNewName.Text) && !Validering.CheckIfFeedExistsByName(txtBoxNewName.Text)) //Potentiellt buggig
+                    {
+                        Feed feed = feedHandler.GetFeedByUrl(txtUrl.Text);
+                        feedHandler.UpdateFeedName(feed.Title, txtBoxNewName.Text);
+                    }
+                    //else if (Validering.CheckIfFeedExistsByName(txtBoxNewName.Text))
                     //{
-                    //    //item1.SubItems.Add(episode.Title);
-                    //    listBox1.Items.Add(episode.Title);
+                    //    MessageBox.Show("En feed med detta namn existerar redan");
                     //}
-                    //ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
-                    //listViewItem.SubItems.Add(feed.Title); // Titel
-                    //listViewItem.SubItems.Add(feedHandler.GetAllFeeds().Count.ToString()); // Frekvens //Inmatning nuvarande endast for kontroll, ändras innan inlämning
-                    ////listViewItem.SubItems.Add(feedHandler.GetFeedIndex(txtUrl.Text).ToString());
-                    //listViewItem.SubItems.Add(feed.Category.Title); // Kategori
 
-                    UpdateFeedContent();
-                    
-
-
+                    UpdateContent();
 
                 }
                 else
@@ -143,21 +143,20 @@ namespace PL1
             }
             else
             {
-                MessageBox.Show("Kontrollera om du har fyllt alla fält!");
+                MessageBox.Show("Kontrollera om du har fyllt i alla obligatoriska fält!");
             }
         }
 
         private void UpdateEpisodeContent()
         {
+            textBox3.Clear();
+            listBox1.Items.Clear();
             if (listView1.SelectedItems.Count == 1)
             {
 
                 //int feedIndex = listView1.SelectedItems[0].Index;
                 //Feed feed = feedHandler.GetFeedIndex(feedIndex);
 
-
-
-                listBox1.Items.Clear();
                 int feedIndex = feedHandler.GetFeedIndex(listView1.SelectedItems[0].SubItems[1].Text);
                 Feed feed = feedHandler.GetAllFeeds()[feedIndex];
 
@@ -166,6 +165,7 @@ namespace PL1
                     listBox1.Items.Add(episode.Title);
                 }
             }
+            
         }
 
 
@@ -179,7 +179,7 @@ namespace PL1
 
                         categoryHandler.CreateCategory(textBox2.Text);
 
-                        UpdateCategoryContent();
+                        UpdateContent();
                     }
 
                 }
@@ -193,6 +193,8 @@ namespace PL1
         private void UpdateContent()
         {
             UpdateCategoryContent();
+            UpdateFeedContent();
+            UpdateEpisodeContent();
         }
 
         private void UpdateCategoryContent()
@@ -231,12 +233,14 @@ namespace PL1
         // Ta bort feed
         private void button7_Click(object sender, EventArgs e)
         {
+
             if (listView1.SelectedItems.Count == 1)
             {
                 
                 feedHandler.RemoveFeed(listView1.SelectedItems[0].SubItems[1].Text);
                 MessageBox.Show(listView1.SelectedItems[0].SubItems[1].Text);
-                UpdateFeedContent();
+                //UpdateFeedContent();
+                UpdateContent();
 
             }
             else
@@ -257,8 +261,9 @@ namespace PL1
                     Category category = categoryHandler.GetCategoryByName(listBox2.SelectedItems[0].ToString());
                     feedHandler.RemoveFeed(category);
                     categoryHandler.RemoveCategory(listBox2.SelectedItems[0].ToString());
-                    UpdateFeedContent();
-                    UpdateCategoryContent();
+                    //UpdateFeedContent();
+                    //UpdateCategoryContent();
+                    UpdateContent();
                     MessageBox.Show(categoryHandler.GetAllCategories().Count.ToString());
                 }
                 else if (dialogResult == DialogResult.No)
@@ -283,19 +288,17 @@ namespace PL1
                     //Category category = categoryHandler.GetCategoryByName(listBox2.SelectedItems[0].ToString());
                     //category.Title = textBox2.Text;
                     categoryHandler.EditCategory(listBox2.SelectedItems[0].ToString(), textBox2.Text);
+                    //feedHandler.GetAllFeedsByCategory(category)
                     feedHandler.UpdateFeedCategory(listBox2.SelectedItems[0].ToString(), textBox2.Text);
-                    UpdateCategoryContent();
-                    UpdateFeedContent();
+                    //UpdateCategoryContent();
+                    //UpdateFeedContent();
+                    UpdateContent();
                     //categoryHandler.GetCategoryByName
                 }
                 else
                 {
                     MessageBox.Show("Kategorin existerar redan");
                 }
-
-
-
-
             }
         }
 
@@ -312,6 +315,57 @@ namespace PL1
         private void btnGetFeeds_Click(object sender, EventArgs e)
         {
            
+        }
+
+        //Sortera feeds efter vald kategori
+        private void btnSort_Click(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedItems.Count == 1)
+            {
+                MessageBox.Show((listBox2.SelectedItems[0].ToString()));
+                {
+                    listView1.Items.Clear();
+
+                    Category category = categoryHandler.GetCategoryByName(listBox2.SelectedItems[0].ToString());
+
+                    foreach(Feed feed in feedHandler.GetAllFeedsByCategory(category))
+                    {
+                        ListViewItem listViewItem = listView1.Items.Add(feed.NumberOfEpisodes.ToString());
+                        listViewItem.SubItems.Add(feed.Title); 
+                        listViewItem.SubItems.Add(feed.UppdateringsFrekvens);
+                        listViewItem.SubItems.Add(feed.Category.Title); 
+                    }
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Markera kategorin du vill sortera efter i listan nedanför");
+            }
+        }
+
+        //Uppdatera feed
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 1 && cbxFrekvens.SelectedItem != null && cbxKategori.SelectedItem != null)
+            {
+                    int feedIndex = feedHandler.GetFeedIndex(listView1.SelectedItems[0].SubItems[1].Text);
+                    Feed feed = feedHandler.GetAllFeeds()[feedIndex];
+                    feedHandler.UpdateFeedCategory(feed.Category.Title, (string)cbxKategori.SelectedItem, feed.Title);
+                    
+                    if (Validering.CheckTextInput(txtBoxNewName.Text) && !Validering.CheckIfFeedExistsByName(txtBoxNewName.Text))
+                    {
+                        feedHandler.UpdateFeedName(feed.Title, txtBoxNewName.Text);
+                    }
+                    
+                    UpdateContent();
+
+            }
+            else
+            {
+                    MessageBox.Show("Du måste välja en feed att uppdatera");
+            }
+            
         }
     }
 }

@@ -28,6 +28,11 @@ namespace BL
         {
             return feedRepository.GetAll();
         }
+
+        public List<Feed> GetAllFeedsByCategory(Category category)
+        {
+            return feedRepository.GetAllFeedsByCategory(category);
+        }
             
 
         public void CreateFeed(string url, List<Episode> episodes, int numberOfEpisodes, string title, Category category, string frekvens)
@@ -60,9 +65,19 @@ namespace BL
             feedRepository.RemoveFeed(category);
         }
 
-        public void UpdateFeedCategory(string oldCategory, string newCategory)
+        public void UpdateFeedCategory(string oldCategory, string newCategory, string feedName)
+        {
+            feedRepository.UpdateFeedCategory(oldCategory, newCategory, feedName);
+        }
+
+        public void UpdateFeedCategory(string oldCategory, string newCategory) //Method overloading
         {
             feedRepository.UpdateFeedCategory(oldCategory, newCategory);
+        }
+
+        public void UpdateFeedName(string oldName, string newName)
+        {
+            feedRepository.UpdateFeedName(oldName, newName);
         }
 
         public static string[] LoadFrekvens()
