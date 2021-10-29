@@ -45,6 +45,11 @@ namespace DL
             return listOfFeedsDeserialized;
         }
 
+        public List<Feed> GetAllFeedsByCategory(Category category)
+        {
+            return GetAll().FindAll(feed => feed.Category.Title.Equals(category.Title));
+        }
+
         public Feed GetFeed(string url)
         {
             Feed feed = GetAll().FirstOrDefault(feed => feed.Url.Equals(url));
@@ -65,6 +70,8 @@ namespace DL
         public string HamtaAvsnittsBeskrivning(int valdFeed, int valtAvsnitt)
         {
             return listOfFeeds[valdFeed].EpisodeList[valtAvsnitt].Summary;
+
+            
         }
 
         public void RemoveFeed(string title)
@@ -85,15 +92,42 @@ namespace DL
             SaveChanges();
         }
 
-        public void UpdateFeedCategory(string oldCategory, string newCategory)
+        public void UpdateFeedCategory(string oldCategory, string newCategory, string feedName)
         {
             //listOfFeeds.Where(x => x.Category.Title.Equals(oldCategory));
 
-            foreach(Feed feed in listOfFeeds)
+            //Feed feed = GetAll().Find(feed => feed.Category.Title.Equals(category.Title));
+            //feed.Category.Title = newCategory;
+
+            Feed feed = listOfFeeds.Find(feed => feed.Title.Equals(feedName));
+
+            if (feed.Category.Title.Equals(oldCategory))
             {
-                if(feed.Category.Title.Equals(oldCategory))
+                feed.Category.Title = newCategory;
+            }
+
+            SaveChanges();
+        }
+
+        public void UpdateFeedCategory(string oldCategory, string newCategory)
+        {
+            foreach (Feed feed in listOfFeeds)
+            {
+                if (feed.Category.Title.Equals(oldCategory))
                 {
                     feed.Category.Title = newCategory;
+                }
+            }
+            SaveChanges();
+        }
+
+        public void UpdateFeedName(string oldName, string newName)
+        {
+            foreach (Feed feed in listOfFeeds)
+            {
+                if (feed.Title.Equals(oldName))
+                {
+                    feed.Title = newName;
                 }
             }
             SaveChanges();

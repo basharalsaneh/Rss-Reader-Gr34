@@ -4,6 +4,8 @@ using Models;
 using DL;
 
 
+
+
 namespace BL
 {
     public class Validering
@@ -32,17 +34,29 @@ namespace BL
             return isValid;
         }
 
-        public static bool FeedExists(string url)
+        public static bool CheckIfFeedExistsByUrl(string url)
         {
             bool itExists = true;
-
 
             //FeedRepository feedRepository = new FeedRepository();
             FeedHandler feedHandler = new FeedHandler();
 
-
-
             if (!feedHandler.GetAllFeeds().Exists(x => x.Url.Equals(url)))
+            {
+                itExists = false;
+            }    
+
+            return itExists;
+
+        }
+
+        public static bool CheckIfFeedExistsByName(string name)
+        {
+            bool itExists = true;
+
+            FeedHandler feedHandler = new FeedHandler();
+
+            if (!feedHandler.GetAllFeeds().Exists(x => x.Title.Equals(name)))
             {
                 itExists = false;
             }
@@ -50,6 +64,8 @@ namespace BL
             return itExists;
 
         }
+
+
 
         public static bool CategoryExists(string categoryName)
         {
@@ -67,6 +83,9 @@ namespace BL
             return itExists;
 
         }
+         
+
+
 
 
        
