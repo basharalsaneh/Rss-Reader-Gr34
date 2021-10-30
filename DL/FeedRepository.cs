@@ -74,6 +74,7 @@ namespace DL
             
         }
 
+
         public void RemoveFeed(string title)
         {
             //listOfFeeds.Remove(listOfFeeds[valtIndex]);
@@ -144,7 +145,6 @@ namespace DL
             serializer.Serialize(listOfFeeds);
             //serializer.SerializeFeed(listOfFeeds);
         }
-
 
 
 

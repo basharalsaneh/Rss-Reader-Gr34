@@ -87,11 +87,26 @@ namespace PL1
 
 
 
-        
-
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateEpisodeContent();
+
+            if (listView1.SelectedItems.Count == 1)
+            {
+
+                int feedIndex = feedHandler.GetFeedIndex(listView1.SelectedItems[0].SubItems[1].Text);
+                Feed feed = feedHandler.GetAllFeeds()[feedIndex];
+                Category category= categoryHandler.GetAllCategories()[feedIndex];
+                txtBoxNewName.Text = feed.Title;
+                txtUrl.Text = feed.Url;
+                cbxFrekvens.Text = feed.UppdateringsFrekvens.ToString();
+                cbxKategori.Text = category.Title.ToString();
+            }
+            else
+            {
+                textBox3.Clear();
+            }
+
         }
 
         private void label1_Click(object sender, EventArgs e)
