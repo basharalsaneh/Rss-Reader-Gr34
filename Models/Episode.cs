@@ -12,6 +12,7 @@ namespace Models
 
         public string Summary { get; set; }
 
+
         public Episode(string title, string summary)
         {
             Title = title;

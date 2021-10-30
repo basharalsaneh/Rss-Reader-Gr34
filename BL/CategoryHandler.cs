@@ -33,6 +33,7 @@ namespace BL
             return categoryRepository.GetCategory(name);
         }
 
+
         public void RemoveCategory(string category)
         {
             categoryRepository.Delete(category);

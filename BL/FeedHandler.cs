@@ -86,7 +86,10 @@ namespace BL
         }
 
 
-
+        public static Feed FetchPodcast(string podcastTitle)
+        {
+            return FeedRepository.FetchPodcast(podcastTitle);
+        }
 
 
     }

@@ -49,6 +49,7 @@ namespace DL
             return category;
         }
 
+
         public void Delete(string categoryName)
         {
             //listOfCategories.Remove(listOfCategories[index]);
