@@ -11,7 +11,10 @@ namespace DL
     public class FeedRepository : IRepository<Feed>
     {
        private static List<Feed> listOfFeeds = new List<Feed>();
-        FeedSerializer serializer = new FeedSerializer();
+       FeedSerializer serializer = new FeedSerializer();
+
+
+
 
         public FeedRepository()
         {
@@ -32,15 +35,10 @@ namespace DL
             //return listOfFeeds;
 
             List<Feed> listOfFeedsDeserialized = new List<Feed>();
-            try
-            {
+            
                 listOfFeedsDeserialized = serializer.Deserialize();
-            }
-            catch (Exception)
-            {
-                
-
-            }
+            
+           
 
             return listOfFeedsDeserialized;
         }
@@ -69,7 +67,15 @@ namespace DL
 
         public string HamtaAvsnittsBeskrivning(int valdFeed, int valtAvsnitt)
         {
-            return listOfFeeds[valdFeed].EpisodeList[valtAvsnitt].Summary;
+            
+                return listOfFeeds[valdFeed].EpisodeList[valtAvsnitt].Summary;
+            
+            //catch(Exception)
+            //{
+            //    return null;
+                
+            //}
+            
 
             
         }
@@ -121,6 +127,8 @@ namespace DL
             SaveChanges();
         }
 
+       
+
         public void UpdateFeedName(string oldName, string newName)
         {
             foreach (Feed feed in listOfFeeds)
@@ -128,6 +136,18 @@ namespace DL
                 if (feed.Title.Equals(oldName))
                 {
                     feed.Title = newName;
+                }
+            }
+            SaveChanges();
+        }
+
+        public void UpdateFrekvens(string feedName, string frekvens)
+        {
+            foreach (Feed feed in listOfFeeds)
+            {
+                if (feed.Title.Equals(feedName))
+                {
+                    feed.UpdateInterval = frekvens;
                 }
             }
             SaveChanges();

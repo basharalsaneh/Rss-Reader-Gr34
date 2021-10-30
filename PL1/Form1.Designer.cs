@@ -29,6 +29,7 @@ namespace PL1
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.txtUrl = new System.Windows.Forms.TextBox();
@@ -56,6 +57,9 @@ namespace PL1
             this.txtBoxNewName = new System.Windows.Forms.TextBox();
             this.lblNewName = new System.Windows.Forms.Label();
             this.btnSort = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.cbxTypeOfFeed = new System.Windows.Forms.ComboBox();
+            this.lblTypeOfFeed = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -85,27 +89,27 @@ namespace PL1
             this.txtUrl.Location = new System.Drawing.Point(9, 201);
             this.txtUrl.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.txtUrl.Name = "txtUrl";
-            this.txtUrl.Size = new System.Drawing.Size(165, 23);
+            this.txtUrl.Size = new System.Drawing.Size(150, 23);
             this.txtUrl.TabIndex = 3;
             // 
             // cbxFrekvens
             // 
             this.cbxFrekvens.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxFrekvens.FormattingEnabled = true;
-            this.cbxFrekvens.Location = new System.Drawing.Point(178, 200);
+            this.cbxFrekvens.Location = new System.Drawing.Point(178, 201);
             this.cbxFrekvens.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.cbxFrekvens.Name = "cbxFrekvens";
-            this.cbxFrekvens.Size = new System.Drawing.Size(136, 23);
+            this.cbxFrekvens.Size = new System.Drawing.Size(82, 23);
             this.cbxFrekvens.TabIndex = 4;
             // 
             // cbxKategori
             // 
             this.cbxKategori.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxKategori.FormattingEnabled = true;
-            this.cbxKategori.Location = new System.Drawing.Point(328, 200);
+            this.cbxKategori.Location = new System.Drawing.Point(281, 201);
             this.cbxKategori.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.cbxKategori.Name = "cbxKategori";
-            this.cbxKategori.Size = new System.Drawing.Size(132, 23);
+            this.cbxKategori.Size = new System.Drawing.Size(83, 23);
             this.cbxKategori.TabIndex = 5;
             // 
             // listBox1
@@ -224,7 +228,7 @@ namespace PL1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(340, 181);
+            this.label2.Location = new System.Drawing.Point(281, 181);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 15);
@@ -245,7 +249,7 @@ namespace PL1
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(191, 181);
+            this.label4.Location = new System.Drawing.Point(154, 181);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(123, 15);
@@ -320,11 +324,36 @@ namespace PL1
             this.btnSort.UseVisualStyleBackColor = true;
             this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // cbxTypeOfFeed
+            // 
+            this.cbxTypeOfFeed.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTypeOfFeed.FormattingEnabled = true;
+            this.cbxTypeOfFeed.Location = new System.Drawing.Point(388, 201);
+            this.cbxTypeOfFeed.Name = "cbxTypeOfFeed";
+            this.cbxTypeOfFeed.Size = new System.Drawing.Size(66, 23);
+            this.cbxTypeOfFeed.TabIndex = 29;
+            // 
+            // lblTypeOfFeed
+            // 
+            this.lblTypeOfFeed.AutoSize = true;
+            this.lblTypeOfFeed.Location = new System.Drawing.Point(388, 180);
+            this.lblTypeOfFeed.Name = "lblTypeOfFeed";
+            this.lblTypeOfFeed.Size = new System.Drawing.Size(66, 15);
+            this.lblTypeOfFeed.TabIndex = 30;
+            this.lblTypeOfFeed.Text = "Typ av feed";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 426);
+            this.Controls.Add(this.lblTypeOfFeed);
+            this.Controls.Add(this.cbxTypeOfFeed);
             this.Controls.Add(this.btnSort);
             this.Controls.Add(this.lblNewName);
             this.Controls.Add(this.txtBoxNewName);
@@ -351,6 +380,7 @@ namespace PL1
             this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -387,6 +417,9 @@ namespace PL1
         private System.Windows.Forms.TextBox txtBoxNewName;
         private System.Windows.Forms.Label lblNewName;
         private System.Windows.Forms.Button btnSort;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ComboBox cbxTypeOfFeed;
+        private System.Windows.Forms.Label lblTypeOfFeed;
     }
 }
 

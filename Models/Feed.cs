@@ -10,19 +10,20 @@ namespace Models
     [Serializable]
     public class Feed
     {
-        
+
         public string Url { get; set; }
-        
+
         public List<Episode> EpisodeList { get; set; }
-        
+
         public int NumberOfEpisodes { get; set; }
-        
+
         public string Title { get; set; }
-        
+
         public Category Category { get; set; }
 
-        public string UppdateringsFrekvens { get; set; }
-        public DateTime SenastUppdaterad { get; set; }
+        public string UpdateInterval { get; set; }
+        
+        public DateTime NextUpdate { get; set; }
 
         public Feed(string url, List<Episode> episodes, int numberOfEpisodes, string title, Category category, string frekvens)
 
@@ -32,8 +33,57 @@ namespace Models
             NumberOfEpisodes = numberOfEpisodes;
             Title = title;
             Category = category;
-            UppdateringsFrekvens = frekvens;
+            UpdateInterval = frekvens;
+            Update();
         }
+
+        public bool NeedsUpdate
+        {
+            get
+            {
+                return NextUpdate <= DateTime.Now;
+            }
+        }
+
+        public string Update()
+        {
+            // nästa uppdatering sker om "UpdateInterval" minuter
+            // Vi hittar den tidpunkten genom att lägga till det antalet millisekunder till den 
+            // nuvarande tiden.
+            //string[] tokens = UpdateInterval.Split(' ');
+            //string retVal = tokens[0] + " " + tokens[1];
+
+            double updateInterval;
+            Double.TryParse(UpdateInterval, out updateInterval);
+            NextUpdate = DateTime.Now.AddMilliseconds(updateInterval);
+            return Title + "'s Update() was invoked. Next update is at " + NextUpdate;
+        }
+
+        private string PickFrequency(string frekvens)
+        {
+            
+            string result = "";
+            if (frekvens == "1 minut")
+            {
+                result = "60000";
+            }
+            else if (frekvens == "5 minuter")
+            {
+                result = "300000";
+            }
+            else if (frekvens == "10 minuter")
+            {
+                result = "600000";
+            }
+            else if (frekvens == "30 minuter")
+            {
+                result = "1800000";
+            }
+
+            return result;
+        }
+
+      
 
         private Feed()
         {

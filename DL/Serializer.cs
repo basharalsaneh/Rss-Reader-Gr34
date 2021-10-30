@@ -9,7 +9,7 @@ using System.IO;
 
 namespace DL
 {
-    abstract class Serializer<T> where T : class
+    public abstract class Serializer<T>  where T : class
     {
         virtual public void Serialize(List<T> list)
         {

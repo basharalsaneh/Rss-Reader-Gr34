@@ -80,6 +80,11 @@ namespace BL
             feedRepository.UpdateFeedName(oldName, newName);
         }
 
+        public void UpdateFeedUpdateInterval(string feedName, string frekvens)
+        {
+            feedRepository.UpdateFrekvens(feedName, frekvens);
+        }
+
         public static string[] LoadFrekvens()
         {
             return FeedRepository.LoadFrekvens();

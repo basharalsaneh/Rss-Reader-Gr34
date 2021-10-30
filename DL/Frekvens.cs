@@ -12,10 +12,14 @@ namespace DL
         private static List<Feed> listOfFeeds = new List<Feed>();
 
         public static string[] frekvensLista = {
-            "10 minuter",
-            "1 timme",
-            "1 dag",
-            "1 vecka"
+            "60000",
+            "300000",
+            "600000",
+            "1800000"
+            //"1 minut",
+            //"5 minuter",
+            //"15 minuter",
+            //"30 minuter"
         };
 
 
