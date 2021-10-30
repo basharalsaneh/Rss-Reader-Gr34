@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using BL;
 using Models;
-using DL;
 using System.Collections.Generic;
 
 namespace PL1
@@ -82,7 +81,7 @@ namespace PL1
             DialogResult dialogResult = MessageBox.Show(message.DisplayMessage(), "Avsluta programmet", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-               
+               //Stäng programmet
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -195,21 +194,20 @@ namespace PL1
 
                 {
                     listBox1.Items.Clear(); // Rensa listan innan den uppdateras med nytt innehåll
-                    
+
                     Task getRssFeed = rssReader.CreateRssAsync(txtUrl.Text, categoryHandler.GetCategoryByName((string)cbxKategori.SelectedItem), (string)(cbxFrekvens.SelectedItem));
                     await getRssFeed;
-                    
-                    
+
 
                     if (Validering.CheckTextInput(txtBoxNewName.Text) && !Validering.CheckIfFeedExistsByName(txtBoxNewName.Text)) //Potentiellt buggig
                     {
-                        Feed feed = feedHandler.GetFeedByUrl(txtUrl.Text);
+                       Feed feed = feedHandler.GetFeedByUrl(txtUrl.Text);
                         feedHandler.UpdateFeedName(feed.Title, txtBoxNewName.Text);
                     }
-                    //else if (Validering.CheckIfFeedExistsByName(txtBoxNewName.Text))
-                    //{
-                    //    MessageBox.Show("En feed med detta namn existerar redan");
-                    //}
+                   else if (Validering.CheckIfFeedExistsByName(txtBoxNewName.Text))
+                    {
+                       MessageBox.Show("En feed med detta namn existerar redan");
+                    }
 
                     UpdateContent();
 
@@ -223,6 +221,23 @@ namespace PL1
             {
                 MessageBox.Show("Kontrollera om du har fyllt i alla obligatoriska fält!");
             }
+
+            //Validering.CheckIfFeedExistsByUrl(txtUrl.Text);
+            //try
+            //{
+                
+
+            //        listBox1.Items.Clear(); // Rensa listan innan den uppdateras med nytt innehåll
+
+            //        Task getRssFeed = rssReader.CreateRssAsync(txtUrl.Text, categoryHandler.GetCategoryByName((string)cbxKategori.SelectedItem), (string)(cbxFrekvens.SelectedItem));
+            //        await getRssFeed;
+
+            //}
+            //catch(TextEmptyException exception)
+            //{
+            //    MessageBox.Show(exception.Message);
+            //}
+
         }
 
         private void UpdateEpisodeContent()

@@ -25,10 +25,19 @@ namespace BL
         public static bool CheckTextInput(string input)
         {
             bool isValid = true;
-
-            if (input == null || input == "")
+            try
             {
-                isValid = false;
+                if (input == null || input == "")
+                {
+                    isValid = false;
+                    throw new TextEmptyException("Tomt textfält");
+                }
+
+            }
+            
+            catch (TextEmptyException e)
+            {
+                
             }
 
             return isValid;

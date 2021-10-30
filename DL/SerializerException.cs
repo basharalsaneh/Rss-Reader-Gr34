@@ -8,11 +8,12 @@ namespace DL
 {
     public class SerializerException : Exception
     {
-        public string FileName { get; set; }
+        private string filename;
+        public string FileName { get; }
 
         public SerializerException(string fileName, string message) : base(message)
         {
-            FileName = fileName;
+            this.filename = fileName;
         }
     }
 }

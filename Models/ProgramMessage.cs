@@ -4,20 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
+namespace Models
 {
     public abstract class ProgramMessage
     {
         public ProgramMessage()
         {
-            
+
         }
 
         public virtual string DisplayMessage()
         {
             return "Meddelande: ";
         }
-        
-
     }
 }

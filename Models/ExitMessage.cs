@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
+namespace Models
 {
-    class ExitMessage : ProgramMessage
+    public class ExitMessage : ProgramMessage
     {
         public override string DisplayMessage()
         {
