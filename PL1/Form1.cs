@@ -132,6 +132,7 @@ namespace PL1
                 if (feed.NeedsUpdate)
                 {
                     //MessageBox.Show(feed.Update());
+                    lblFeedUpdate.Text = feed.Update();
                     listBox1.Items.Clear();
                     string url = feed.Url;
                     //List <Episode> episodeList = feed.EpisodeList;
@@ -201,7 +202,8 @@ namespace PL1
                         
                        listBox1.Items.Clear(); // Rensa listan innan den uppdateras med nytt innehåll
 
-                       Task getRssFeed = rssReader.CreateRssAsync(txtUrl.Text, categoryHandler.GetCategoryByName((string)cbxKategori.SelectedItem), (string)(cbxFrekvens.SelectedItem));
+                       string frekvens = cbxFrekvens.SelectedItem.ToString();
+                       Task getRssFeed = rssReader.CreateRssAsync(txtUrl.Text, categoryHandler.GetCategoryByName((string)cbxKategori.SelectedItem), frekvens.Substring(0, frekvens.IndexOf(' ')));
                        await getRssFeed;
                         
                         
@@ -487,7 +489,9 @@ namespace PL1
                     Feed feed = feedHandler.GetAllFeeds()[feedIndex];
                     feedHandler.UpdateFeedCategory(feed.Category.Title, (string)cbxKategori.SelectedItem, feed.Title);
                     //feed.UpdateInterval = (string)cbxFrekvens.SelectedItem;
-                    feedHandler.UpdateFeedUpdateInterval(feed.Title, (string)cbxFrekvens.SelectedItem);
+                    string frekvens = cbxFrekvens.SelectedItem.ToString();
+
+                    feedHandler.UpdateFeedUpdateInterval(feed.Title, frekvens.Substring(0, frekvens.IndexOf(" ")));
 
                     if (txtBoxNewName.Text != "" && Validering.CheckTextInput(txtBoxNewName.Text) && !Validering.CheckIfFeedExistsByName(txtBoxNewName.Text))
                     {

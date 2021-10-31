@@ -56,7 +56,7 @@ namespace Models
             double updateInterval;
             Double.TryParse(UpdateInterval, out updateInterval);
             NextUpdate = DateTime.Now.AddMilliseconds(updateInterval);
-            return Title + "'s Update() was invoked. Next update is at " + NextUpdate;
+            return Title + " uppdaterades. Nästa uppdatering sker: " + NextUpdate;
         }
 
         private string PickFrequency(string frekvens)

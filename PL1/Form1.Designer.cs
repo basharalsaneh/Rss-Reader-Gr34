@@ -58,6 +58,7 @@ namespace PL1
             this.lblNewName = new System.Windows.Forms.Label();
             this.btnSort = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblFeedUpdate = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -97,14 +98,14 @@ namespace PL1
             this.cbxFrekvens.Location = new System.Drawing.Point(281, 195);
             this.cbxFrekvens.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.cbxFrekvens.Name = "cbxFrekvens";
-            this.cbxFrekvens.Size = new System.Drawing.Size(82, 23);
+            this.cbxFrekvens.Size = new System.Drawing.Size(103, 23);
             this.cbxFrekvens.TabIndex = 4;
             // 
             // cbxKategori
             // 
             this.cbxKategori.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxKategori.FormattingEnabled = true;
-            this.cbxKategori.Location = new System.Drawing.Point(377, 195);
+            this.cbxKategori.Location = new System.Drawing.Point(388, 195);
             this.cbxKategori.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.cbxKategori.Name = "cbxKategori";
             this.cbxKategori.Size = new System.Drawing.Size(83, 23);
@@ -226,7 +227,7 @@ namespace PL1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(388, 179);
+            this.label2.Location = new System.Drawing.Point(406, 179);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 15);
@@ -267,12 +268,12 @@ namespace PL1
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(388, 2);
+            this.label5.Location = new System.Drawing.Point(657, 2);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 15);
+            this.label5.Size = new System.Drawing.Size(44, 15);
             this.label5.TabIndex = 22;
-            this.label5.Text = "Feed Rubrik:";
+            this.label5.Text = "Avsnitt";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
@@ -298,7 +299,7 @@ namespace PL1
             // 
             // txtBoxNewName
             // 
-            this.txtBoxNewName.Location = new System.Drawing.Point(474, 201);
+            this.txtBoxNewName.Location = new System.Drawing.Point(474, 195);
             this.txtBoxNewName.Name = "txtBoxNewName";
             this.txtBoxNewName.Size = new System.Drawing.Size(100, 23);
             this.txtBoxNewName.TabIndex = 26;
@@ -306,7 +307,7 @@ namespace PL1
             // lblNewName
             // 
             this.lblNewName.AutoSize = true;
-            this.lblNewName.Location = new System.Drawing.Point(474, 181);
+            this.lblNewName.Location = new System.Drawing.Point(474, 177);
             this.lblNewName.Name = "lblNewName";
             this.lblNewName.Size = new System.Drawing.Size(115, 15);
             this.lblNewName.TabIndex = 27;
@@ -327,11 +328,20 @@ namespace PL1
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
+            // lblFeedUpdate
+            // 
+            this.lblFeedUpdate.AutoSize = true;
+            this.lblFeedUpdate.Location = new System.Drawing.Point(40, 2);
+            this.lblFeedUpdate.Name = "lblFeedUpdate";
+            this.lblFeedUpdate.Size = new System.Drawing.Size(0, 15);
+            this.lblFeedUpdate.TabIndex = 29;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 426);
+            this.Controls.Add(this.lblFeedUpdate);
             this.Controls.Add(this.btnSort);
             this.Controls.Add(this.lblNewName);
             this.Controls.Add(this.txtBoxNewName);
@@ -396,6 +406,7 @@ namespace PL1
         private System.Windows.Forms.Label lblNewName;
         private System.Windows.Forms.Button btnSort;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblFeedUpdate;
     }
 }
 
