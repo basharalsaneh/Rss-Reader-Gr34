@@ -41,9 +41,9 @@ namespace BL
 
                     feedHandler.CreateFeed(url, episodeHandler.GetAllEpisodes(), episodeHandler.GetAllEpisodes().Count, syndicationFeed.Title.Text, category, frekvens);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-
+                    
 
                 }
             });

@@ -13,7 +13,20 @@ namespace BL
 
         public static bool CheckURL(string URL)
         {
-            return URL.StartsWith("https://") || URL.StartsWith("http://") ? true : false;
+            bool isValid = false;
+
+            if (URL.StartsWith("https://") || URL.StartsWith("http://"))
+            {
+                isValid = true;
+            }
+            else
+            {
+                throw new InvalidUrlException("Den angivna URL:en är inte giltig");
+            }
+
+            return isValid;
+
+            //return URL.StartsWith("https://") || URL.StartsWith("http://") ? true : false;
         }
 
         public static bool OmDublett(string nyttInnehall, string[] innehall)
@@ -25,20 +38,13 @@ namespace BL
         public static bool CheckTextInput(string input)
         {
             bool isValid = true;
-            try
-            {
+            
                 if (input == null || input == "")
                 {
                     isValid = false;
-                    throw new TextEmptyException("Tomt textfält");
+                    throw new TextEmptyException("Följande textfält måste fyllas i: ");
                 }
-
-            }
-            
-            catch (TextEmptyException e)
-            {
-                
-            }
+           
 
             return isValid;
         }
@@ -53,7 +59,11 @@ namespace BL
             if (!feedHandler.GetAllFeeds().Exists(x => x.Url.Equals(url)))
             {
                 itExists = false;
-            }    
+            }
+            else
+            {
+                throw new EntityExistsException("Denna feed existerar redan");
+            }
 
             return itExists;
 
@@ -68,6 +78,10 @@ namespace BL
             if (!feedHandler.GetAllFeeds().Exists(x => x.Title.Equals(name)))
             {
                 itExists = false;
+            }
+            else
+            {
+                throw new EntityExistsException("En feed med samma namn existerar redan");
             }
 
             return itExists;
@@ -87,6 +101,11 @@ namespace BL
             if (!categoryHandler.GetAllCategories().Exists(x => x.Title.Equals(categoryName)))
             {
                 itExists = false;
+                
+            }
+            else
+            {
+                throw new EntityExistsException("Denna kategori existerar redan");
             }
 
             return itExists;
