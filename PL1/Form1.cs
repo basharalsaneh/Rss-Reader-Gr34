@@ -229,7 +229,9 @@ namespace PL1
                         {
                             MessageBox.Show("Kunde inte läsa feeden");
                         }
-                       
+
+                        txtUrl.Clear();
+                        txtBoxNewName.Clear();
 
                     }
                     
