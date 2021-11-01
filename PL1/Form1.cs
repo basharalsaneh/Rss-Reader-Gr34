@@ -143,7 +143,7 @@ namespace PL1
                 int feedIndex = feedHandler.GetFeedIndex(listViewFeeds.SelectedItems[0].SubItems[1].Text);
                 Feed feed = feedHandler.GetAllFeeds()[feedIndex];
                 txtBoxNewName.Clear();
-                txtUrl.Text = feed.Url;
+                //txtUrl.Text = feed.Url;
                 cbxKategori.Text = feed.Category.Title;
 
                 switch (feed.UpdateInterval)
@@ -216,13 +216,20 @@ namespace PL1
                                        
 
                         UpdateContent();
-
-                        if (txtBoxNewName.Text != "" && !Validering.CheckIfFeedExistsByName(txtBoxNewName.Text)) //Potentiellt buggig
+                        try
                         {
-                            Feed feed = feedHandler.GetFeedByUrl(txtUrl.Text);
-                            feedHandler.UpdateFeedName(feed.Title, txtBoxNewName.Text);
-                            UpdateContent();
+                            if (txtBoxNewName.Text != "" && !Validering.CheckIfFeedExistsByName(txtBoxNewName.Text))  //Potentiellt buggig
+                            {
+                                Feed feed = feedHandler.GetFeedByUrl(txtUrl.Text);
+                                feedHandler.UpdateFeedName(feed.Title, txtBoxNewName.Text);
+                                UpdateContent();
+                            }
                         }
+                        catch(Exception)
+                        {
+                            MessageBox.Show("Kunde inte läsa feeden");
+                        }
+                       
 
                     }
                     

@@ -53,7 +53,15 @@ namespace DL
 
         public Feed GetFeed(string url)
         {
-            Feed feed = GetAll().FirstOrDefault(feed => feed.Url.Equals(url));
+            Feed feed = null;
+            try
+            {
+                feed = GetAll().FirstOrDefault(feed => feed.Url.Equals(url));
+            }
+            catch(Exception)
+            {
+
+            }
             return feed;
 
         }
