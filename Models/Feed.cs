@@ -58,31 +58,6 @@ namespace Models
             NextUpdate = DateTime.Now.AddMilliseconds(updateInterval);
             return Title + " uppdaterades. Nästa uppdatering sker: " + NextUpdate;
         }
-
-        private string PickFrequency(string frekvens)
-        {
-            
-            string result = "";
-            if (frekvens == "1 minut")
-            {
-                result = "60000";
-            }
-            else if (frekvens == "5 minuter")
-            {
-                result = "300000";
-            }
-            else if (frekvens == "10 minuter")
-            {
-                result = "600000";
-            }
-            else if (frekvens == "30 minuter")
-            {
-                result = "1800000";
-            }
-
-            return result;
-        }
-
       
 
         private Feed()

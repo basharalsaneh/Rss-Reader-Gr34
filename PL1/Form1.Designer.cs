@@ -30,58 +30,59 @@ namespace PL1
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCreateFeed = new System.Windows.Forms.Button();
+            this.btnUpdateFeed = new System.Windows.Forms.Button();
             this.txtUrl = new System.Windows.Forms.TextBox();
             this.cbxFrekvens = new System.Windows.Forms.ComboBox();
             this.cbxKategori = new System.Windows.Forms.ComboBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listBoxEpisodes = new System.Windows.Forms.ListBox();
+            this.listViewFeeds = new System.Windows.Forms.ListView();
             this.Avsnitt = new System.Windows.Forms.ColumnHeader();
             this.Namn = new System.Windows.Forms.ColumnHeader();
             this.Frekvens = new System.Windows.Forms.ColumnHeader();
             this.Kategori = new System.Windows.Forms.ColumnHeader();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.listBoxCategory = new System.Windows.Forms.ListBox();
+            this.textBoxCategory = new System.Windows.Forms.TextBox();
+            this.lblCategory = new System.Windows.Forms.Label();
+            this.btnRemoveCategory = new System.Windows.Forms.Button();
+            this.btnUpdateCategory = new System.Windows.Forms.Button();
+            this.btnCreateCategory = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxEpisodeDescription = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnRemoveFeed = new System.Windows.Forms.Button();
             this.txtBoxNewName = new System.Windows.Forms.TextBox();
             this.lblNewName = new System.Windows.Forms.Label();
             this.btnSort = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblFeedUpdate = new System.Windows.Forms.Label();
+            this.btnShowAllFeeds = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // btnCreateFeed
             // 
-            this.button1.Location = new System.Drawing.Point(588, 196);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(65, 22);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Lägga till";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnCreateFeed.Location = new System.Drawing.Point(588, 196);
+            this.btnCreateFeed.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.btnCreateFeed.Name = "btnCreateFeed";
+            this.btnCreateFeed.Size = new System.Drawing.Size(65, 22);
+            this.btnCreateFeed.TabIndex = 0;
+            this.btnCreateFeed.Text = "Lägga till";
+            this.btnCreateFeed.UseVisualStyleBackColor = true;
+            this.btnCreateFeed.Click += new System.EventHandler(this.btnCreateFeed_Click);
             // 
-            // button2
+            // btnUpdateFeed
             // 
-            this.button2.Location = new System.Drawing.Point(657, 196);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(76, 22);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Uppdatera";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnUpdateFeed.Location = new System.Drawing.Point(657, 196);
+            this.btnUpdateFeed.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.btnUpdateFeed.Name = "btnUpdateFeed";
+            this.btnUpdateFeed.Size = new System.Drawing.Size(76, 22);
+            this.btnUpdateFeed.TabIndex = 1;
+            this.btnUpdateFeed.Text = "Uppdatera";
+            this.btnUpdateFeed.UseVisualStyleBackColor = true;
+            this.btnUpdateFeed.Click += new System.EventHandler(this.btnUpdateFeed_Click);
             // 
             // txtUrl
             // 
@@ -111,36 +112,36 @@ namespace PL1
             this.cbxKategori.Size = new System.Drawing.Size(83, 23);
             this.cbxKategori.TabIndex = 5;
             // 
-            // listBox1
+            // listBoxEpisodes
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(388, 18);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(345, 139);
-            this.listBox1.TabIndex = 7;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBoxEpisodes.FormattingEnabled = true;
+            this.listBoxEpisodes.ItemHeight = 15;
+            this.listBoxEpisodes.Location = new System.Drawing.Point(388, 18);
+            this.listBoxEpisodes.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.listBoxEpisodes.Name = "listBoxEpisodes";
+            this.listBoxEpisodes.Size = new System.Drawing.Size(345, 139);
+            this.listBoxEpisodes.TabIndex = 7;
+            this.listBoxEpisodes.SelectedIndexChanged += new System.EventHandler(this.listBoxEpisodes_SelectedIndexChanged);
             // 
-            // listView1
+            // listViewFeeds
             // 
-            this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewFeeds.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.listViewFeeds.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Avsnitt,
             this.Namn,
             this.Frekvens,
             this.Kategori});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(9, 20);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(365, 138);
-            this.listView1.TabIndex = 8;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listViewFeeds.FullRowSelect = true;
+            this.listViewFeeds.GridLines = true;
+            this.listViewFeeds.HideSelection = false;
+            this.listViewFeeds.Location = new System.Drawing.Point(9, 20);
+            this.listViewFeeds.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.listViewFeeds.Name = "listViewFeeds";
+            this.listViewFeeds.Size = new System.Drawing.Size(365, 138);
+            this.listViewFeeds.TabIndex = 8;
+            this.listViewFeeds.UseCompatibleStateImageBehavior = false;
+            this.listViewFeeds.View = System.Windows.Forms.View.Details;
+            this.listViewFeeds.SelectedIndexChanged += new System.EventHandler(this.listViewFeeds_SelectedIndexChanged);
             // 
             // Avsnitt
             // 
@@ -161,68 +162,68 @@ namespace PL1
             this.Kategori.Text = "Kategori";
             this.Kategori.Width = 150;
             // 
-            // listBox2
+            // listBoxCategory
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 15;
-            this.listBox2.Location = new System.Drawing.Point(8, 244);
-            this.listBox2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(252, 109);
-            this.listBox2.TabIndex = 9;
-            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            this.listBoxCategory.FormattingEnabled = true;
+            this.listBoxCategory.ItemHeight = 15;
+            this.listBoxCategory.Location = new System.Drawing.Point(8, 244);
+            this.listBoxCategory.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.listBoxCategory.Name = "listBoxCategory";
+            this.listBoxCategory.Size = new System.Drawing.Size(252, 109);
+            this.listBoxCategory.TabIndex = 9;
+            this.listBoxCategory.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
-            // textBox2
+            // textBoxCategory
             // 
-            this.textBox2.Location = new System.Drawing.Point(8, 364);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(252, 23);
-            this.textBox2.TabIndex = 13;
+            this.textBoxCategory.Location = new System.Drawing.Point(8, 364);
+            this.textBoxCategory.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.textBoxCategory.Name = "textBoxCategory";
+            this.textBoxCategory.Size = new System.Drawing.Size(252, 23);
+            this.textBoxCategory.TabIndex = 13;
             // 
-            // label1
+            // lblCategory
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 222);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 15);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Kategori:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Location = new System.Drawing.Point(9, 222);
+            this.lblCategory.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(54, 15);
+            this.lblCategory.TabIndex = 14;
+            this.lblCategory.Text = "Kategori:";
+            this.lblCategory.Click += new System.EventHandler(this.lblCategory_Click);
             // 
-            // button4
+            // btnRemoveCategory
             // 
-            this.button4.Location = new System.Drawing.Point(177, 394);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(81, 22);
-            this.button4.TabIndex = 17;
-            this.button4.Text = "Ta bort";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnRemoveCategory.Location = new System.Drawing.Point(177, 394);
+            this.btnRemoveCategory.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.btnRemoveCategory.Name = "btnRemoveCategory";
+            this.btnRemoveCategory.Size = new System.Drawing.Size(81, 22);
+            this.btnRemoveCategory.TabIndex = 17;
+            this.btnRemoveCategory.Text = "Ta bort";
+            this.btnRemoveCategory.UseVisualStyleBackColor = true;
+            this.btnRemoveCategory.Click += new System.EventHandler(this.btnRemoveCategory_Click);
             // 
-            // button5
+            // btnUpdateCategory
             // 
-            this.button5.Location = new System.Drawing.Point(93, 394);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(81, 22);
-            this.button5.TabIndex = 16;
-            this.button5.Text = "Uppdatera";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btnUpdateCategory.Location = new System.Drawing.Point(93, 394);
+            this.btnUpdateCategory.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.btnUpdateCategory.Name = "btnUpdateCategory";
+            this.btnUpdateCategory.Size = new System.Drawing.Size(81, 22);
+            this.btnUpdateCategory.TabIndex = 16;
+            this.btnUpdateCategory.Text = "Uppdatera";
+            this.btnUpdateCategory.UseVisualStyleBackColor = true;
+            this.btnUpdateCategory.Click += new System.EventHandler(this.btnUpdateCategory_Click);
             // 
-            // button6
+            // btnCreateCategory
             // 
-            this.button6.Location = new System.Drawing.Point(9, 394);
-            this.button6.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(81, 22);
-            this.button6.TabIndex = 15;
-            this.button6.Text = "Lägga till";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.btnCreateCategory.Location = new System.Drawing.Point(9, 394);
+            this.btnCreateCategory.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.btnCreateCategory.Name = "btnCreateCategory";
+            this.btnCreateCategory.Size = new System.Drawing.Size(81, 22);
+            this.btnCreateCategory.TabIndex = 15;
+            this.btnCreateCategory.Text = "Lägga till";
+            this.btnCreateCategory.UseVisualStyleBackColor = true;
+            this.btnCreateCategory.Click += new System.EventHandler(this.btnCreateCategory_Click);
             // 
             // label2
             // 
@@ -255,15 +256,16 @@ namespace PL1
             this.label4.TabIndex = 20;
             this.label4.Text = "Uppdatering frekvens:";
             // 
-            // textBox3
+            // textBoxEpisodeDescription
             // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox3.Location = new System.Drawing.Point(281, 244);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(452, 173);
-            this.textBox3.TabIndex = 21;
+            this.textBoxEpisodeDescription.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.textBoxEpisodeDescription.Location = new System.Drawing.Point(281, 244);
+            this.textBoxEpisodeDescription.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.textBoxEpisodeDescription.Multiline = true;
+            this.textBoxEpisodeDescription.Name = "textBoxEpisodeDescription";
+            this.textBoxEpisodeDescription.ReadOnly = true;
+            this.textBoxEpisodeDescription.Size = new System.Drawing.Size(452, 173);
+            this.textBoxEpisodeDescription.TabIndex = 21;
             // 
             // label5
             // 
@@ -286,16 +288,16 @@ namespace PL1
             this.label6.TabIndex = 23;
             this.label6.Text = "Avsnittsbeskrivning:";
             // 
-            // button7
+            // btnRemoveFeed
             // 
-            this.button7.Location = new System.Drawing.Point(8, 158);
-            this.button7.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(81, 22);
-            this.button7.TabIndex = 24;
-            this.button7.Text = "Radera RSS feed";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.btnRemoveFeed.Location = new System.Drawing.Point(8, 158);
+            this.btnRemoveFeed.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.btnRemoveFeed.Name = "btnRemoveFeed";
+            this.btnRemoveFeed.Size = new System.Drawing.Size(81, 22);
+            this.btnRemoveFeed.TabIndex = 24;
+            this.btnRemoveFeed.Text = "Radera RSS feed";
+            this.btnRemoveFeed.UseVisualStyleBackColor = true;
+            this.btnRemoveFeed.Click += new System.EventHandler(this.btnRemoveFeed_Click);
             // 
             // txtBoxNewName
             // 
@@ -336,35 +338,46 @@ namespace PL1
             this.lblFeedUpdate.Size = new System.Drawing.Size(0, 15);
             this.lblFeedUpdate.TabIndex = 29;
             // 
+            // btnShowAllFeeds
+            // 
+            this.btnShowAllFeeds.Location = new System.Drawing.Point(185, 158);
+            this.btnShowAllFeeds.Name = "btnShowAllFeeds";
+            this.btnShowAllFeeds.Size = new System.Drawing.Size(75, 23);
+            this.btnShowAllFeeds.TabIndex = 30;
+            this.btnShowAllFeeds.Text = "Visa alla feeds";
+            this.btnShowAllFeeds.UseVisualStyleBackColor = true;
+            this.btnShowAllFeeds.Click += new System.EventHandler(this.btnShowAllFeeds_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 426);
+            this.Controls.Add(this.btnShowAllFeeds);
             this.Controls.Add(this.lblFeedUpdate);
             this.Controls.Add(this.btnSort);
             this.Controls.Add(this.lblNewName);
             this.Controls.Add(this.txtBoxNewName);
-            this.Controls.Add(this.button7);
+            this.Controls.Add(this.btnRemoveFeed);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBoxEpisodeDescription);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.btnRemoveCategory);
+            this.Controls.Add(this.btnUpdateCategory);
+            this.Controls.Add(this.btnCreateCategory);
+            this.Controls.Add(this.lblCategory);
+            this.Controls.Add(this.textBoxCategory);
+            this.Controls.Add(this.listBoxCategory);
+            this.Controls.Add(this.listViewFeeds);
+            this.Controls.Add(this.listBoxEpisodes);
             this.Controls.Add(this.cbxKategori);
             this.Controls.Add(this.cbxFrekvens);
             this.Controls.Add(this.txtUrl);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnUpdateFeed);
+            this.Controls.Add(this.btnCreateFeed);
             this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -377,36 +390,37 @@ namespace PL1
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCreateFeed;
+        private System.Windows.Forms.Button btnUpdateFeed;
         private System.Windows.Forms.TextBox txtUrl;
         private System.Windows.Forms.ComboBox cbxFrekvens;
         private System.Windows.Forms.ComboBox cbxKategori;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListBox listBoxEpisodes;
+        private System.Windows.Forms.ListView listViewFeeds;
         private System.Windows.Forms.ColumnHeader Avsnitt;
         private System.Windows.Forms.ColumnHeader Namn;
         private System.Windows.Forms.ColumnHeader Frekvens;
         private System.Windows.Forms.ColumnHeader Kategori;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ListBox listBoxCategory;
+        private System.Windows.Forms.TextBox textBoxCategory;
+        private System.Windows.Forms.Label lblCategory;
+        private System.Windows.Forms.Button btnRemoveCategory;
+        private System.Windows.Forms.Button btnUpdateCategory;
+        private System.Windows.Forms.Button btnCreateCategory;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxEpisodeDescription;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnRemoveFeed;
 
         private System.Windows.Forms.TextBox txtBoxNewName;
         private System.Windows.Forms.Label lblNewName;
         private System.Windows.Forms.Button btnSort;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblFeedUpdate;
+        private System.Windows.Forms.Button btnShowAllFeeds;
     }
 }
 

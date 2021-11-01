@@ -25,13 +25,6 @@ namespace BL
             }
 
             return isValid;
-
-            //return URL.StartsWith("https://") || URL.StartsWith("http://") ? true : false;
-        }
-
-        public static bool OmDublett(string nyttInnehall, string[] innehall)
-        {
-            return innehall.Any((g) => String.Equals(g, nyttInnehall, StringComparison.OrdinalIgnoreCase));
         }
 
 
@@ -53,7 +46,6 @@ namespace BL
         {
             bool itExists = true;
 
-            //FeedRepository feedRepository = new FeedRepository();
             FeedHandler feedHandler = new FeedHandler();
 
             if (!feedHandler.GetAllFeeds().Exists(x => x.Url.Equals(url)))
@@ -88,13 +80,10 @@ namespace BL
 
         }
 
-
-
         public static bool CategoryExists(string categoryName)
         {
             bool itExists = true;
 
-            //CategoryRepository categoryRepository  = new CategoryRepository();
             CategoryHandler categoryHandler = new CategoryHandler();
             
 

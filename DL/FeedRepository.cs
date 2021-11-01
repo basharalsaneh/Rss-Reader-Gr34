@@ -14,8 +14,6 @@ namespace DL
        FeedSerializer serializer = new FeedSerializer();
 
 
-
-
         public FeedRepository()
         {
             listOfFeeds = GetAll();
@@ -32,7 +30,6 @@ namespace DL
 
         public List<Feed> GetAll()
         {
-            //return listOfFeeds;
 
             List<Feed> listOfFeedsDeserialized = new List<Feed>();
             
@@ -53,9 +50,6 @@ namespace DL
             Feed feed = GetAll().FirstOrDefault(feed => feed.Url.Equals(url));
             return feed;
 
-            //Feed feed = listOfFeeds.Select(feed => feed).Where(feed => feed.Url.Equals(url));
-            //return feed;
-
         }
 
 
@@ -70,19 +64,10 @@ namespace DL
             
                 return listOfFeeds[valdFeed].EpisodeList[valtAvsnitt].Summary;
             
-            //catch(Exception)
-            //{
-            //    return null;
-                
-            //}
-            
-
-            
         }
 
         public void RemoveFeed(string title)
         {
-            //listOfFeeds.Remove(listOfFeeds[valtIndex]);
 
             Feed feed = listOfFeeds.FirstOrDefault(feed => feed.Title.Equals(title));
             listOfFeeds.Remove(feed);
@@ -91,19 +76,13 @@ namespace DL
 
         public void RemoveFeed(Category category) //Method overloading
         {
-            //Feed feed = listOfFeeds.FirstOrDefault(feed => feed.Category.Title.Equals(category.Title));
             listOfFeeds.RemoveAll(feed => feed.Category.Title.Equals(category.Title));
 
-            //listOfFeeds.RemoveAll(feed => feed.Category.Equals(category));
             SaveChanges();
         }
 
         public void UpdateFeedCategory(string oldCategory, string newCategory, string feedName)
         {
-            //listOfFeeds.Where(x => x.Category.Title.Equals(oldCategory));
-
-            //Feed feed = GetAll().Find(feed => feed.Category.Title.Equals(category.Title));
-            //feed.Category.Title = newCategory;
 
             Feed feed = listOfFeeds.Find(feed => feed.Title.Equals(feedName));
 
@@ -162,11 +141,7 @@ namespace DL
         public void SaveChanges()
         {
             serializer.Serialize(listOfFeeds);
-            //serializer.SerializeFeed(listOfFeeds);
         }
-
-
-
 
 
     }

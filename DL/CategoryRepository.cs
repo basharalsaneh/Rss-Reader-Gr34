@@ -27,7 +27,6 @@ namespace DL
 
         public List<Category> GetAll()
         {
-            //return listOfCategories;
 
             List<Category> listOfCategoriesDeserialized = new List<Category>();
             try
@@ -51,8 +50,7 @@ namespace DL
 
         public void Delete(string categoryName)
         {
-            //listOfCategories.Remove(listOfCategories[index]);
-            //listOfCategories.Remove(cat => cat.Title.Equals(category.Title));
+
             Category category = listOfCategories.FirstOrDefault(cat => cat.Title.Equals(categoryName));
             listOfCategories.Remove(category);
             SaveChanges();
@@ -63,7 +61,7 @@ namespace DL
             Category category1 = GetCategory(oldTitle);
             listOfCategories.RemoveAll(cat => cat.Title.Equals(category1.Title));
             Category category2 = new Category(newTitle);
-            //category.Title = newTitle;
+
             listOfCategories.Add(category2);
             SaveChanges();
 
@@ -72,7 +70,7 @@ namespace DL
         public void SaveChanges()
         {
             serializer.Serialize(listOfCategories);
-            //serializer.SerializeFeed(listOfFeeds);
+
         }
 
 
