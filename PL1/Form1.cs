@@ -458,6 +458,9 @@ namespace PL1
 
                 else
                 {
+                    btnCreateCategory.Enabled = true;
+                    btnUpdateCategory.Enabled = true;
+                    btnRemoveCategory.Enabled = true;
                     foreach (Feed feed in feedHandler.GetAllFeeds())
                     {
                         if (feed.Category.Title.ToString().Equals(valdKat))
@@ -488,9 +491,7 @@ namespace PL1
                             }
                             listViewItem.SubItems.Add(feed.Category.Title); 
 
-                            btnCreateCategory.Enabled = true;
-                            btnUpdateCategory.Enabled = true;
-                            btnRemoveCategory.Enabled = true;
+                            
                         }
                         textBoxCategory.Text = listBoxCategory.SelectedItem.ToString();
                     }
