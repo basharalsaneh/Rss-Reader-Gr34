@@ -27,8 +27,6 @@ namespace PL1
             messageHandler = new MessageHandler();
             UpdateContent();
 
-
-
             timer1.Interval = 1000;
 
             timer1.Start();
@@ -144,8 +142,7 @@ namespace PL1
 
                 int feedIndex = feedHandler.GetFeedIndex(listViewFeeds.SelectedItems[0].SubItems[1].Text);
                 Feed feed = feedHandler.GetAllFeeds()[feedIndex];
-                //Category category = categoryHandler.GetAllCategories()[feedIndex];
-                txtBoxNewName.Text = "";
+                txtBoxNewName.Clear();
                 txtUrl.Text = feed.Url;
                 cbxKategori.Text = feed.Category.Title;
 
@@ -283,7 +280,7 @@ namespace PL1
                         categoryHandler.CreateCategory(textBoxCategory.Text);
 
                         UpdateContent();
-                        textBoxCategory.Text = "";
+                        textBoxCategory.Clear();
                     }
 
                 }
@@ -305,6 +302,8 @@ namespace PL1
             UpdateCategoryContent();
             UpdateFeedContent();
             UpdateEpisodeContent();
+            listBoxCategory.Items.Add("Alla kategorier");
+
         }
 
         private void UpdateCategoryContent()
@@ -328,9 +327,8 @@ namespace PL1
             { 
                     ListViewItem listViewItem = listViewFeeds.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
                     listViewItem.SubItems.Add(feed.Title); // Titel
-                    //listViewItem.SubItems.Add(feed.UpdateInterval.ToString());// Frekvens
                     
-                switch (feed.UpdateInterval)
+                switch (feed.UpdateInterval) //Frekvens
                 {
                     case "60000":
                         listViewItem.SubItems.Add("Varje minut");
@@ -432,8 +430,72 @@ namespace PL1
 
 
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        //Sortera efter kategori
+        private void listBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+            if (listBoxCategory.SelectedItems.Count == 1)
+            {
+                var valdKat = listBoxCategory.SelectedItem.ToString();
+                listViewFeeds.Items.Clear();
+                if (valdKat.Equals("Alla kategorier"))
+                {
+                    UpdateContent();
+                    btnCreateCategory.Enabled = true;
+                    btnUpdateCategory.Enabled = false;
+                    btnRemoveCategory.Enabled = false;
+                    textBoxCategory.Clear();
+                }
+
+                else
+                {
+                    foreach (Feed feed in feedHandler.GetAllFeeds())
+                    {
+                        if (feed.Category.Title.ToString().Equals(valdKat))
+                        {
+                            ListViewItem listViewItem = listViewFeeds.Items.Add(feed.NumberOfEpisodes.ToString()); // Avsnitt
+                            listViewItem.SubItems.Add(feed.Title); // Titel
+
+                            switch (feed.UpdateInterval)
+                            {
+                                case "60000":
+                                    listViewItem.SubItems.Add("Varje minut");
+                                    break;
+
+                                case "300000":
+                                    listViewItem.SubItems.Add("Var 5:e minut");
+                                    break;
+
+                                case "600000":
+                                    listViewItem.SubItems.Add("Var 10:e minut");
+                                    break;
+
+                                case "1800000":
+                                    listViewItem.SubItems.Add("Var 30:e minut");
+                                    break;
+                                default:
+                                    listViewItem.SubItems.Add("Varje minut");
+                                    break;
+                            }
+                            listViewItem.SubItems.Add(feed.Category.Title); 
+
+                            btnCreateCategory.Enabled = true;
+                            btnUpdateCategory.Enabled = true;
+                            btnRemoveCategory.Enabled = true;
+                        }
+                        textBoxCategory.Text = listBoxCategory.SelectedItem.ToString();
+                    }
+
+
+                }
+            }
+            else
+            {
+                
+            }
+                
+
+               
         }
        
 
@@ -480,40 +542,11 @@ namespace PL1
 
         }
 
-        // Sortera efter vald kategori
-        private void btnSort_Click(object sender, EventArgs e)
-        {
-            if (listBoxCategory.SelectedItems.Count == 1)
-            {
-                {
-                    listViewFeeds.Items.Clear();
-
-                    Category category = categoryHandler.GetCategoryByName(listBoxCategory.SelectedItems[0].ToString());
-
-                    foreach (Feed feed in feedHandler.GetAllFeedsByCategory(category))
-                    {
-                        ListViewItem listViewItem = listViewFeeds.Items.Add(feed.NumberOfEpisodes.ToString());
-                        listViewItem.SubItems.Add(feed.Title);
-                        listViewItem.SubItems.Add(feed.UpdateInterval.ToString());
-                        listViewItem.SubItems.Add(feed.Category.Title);
-                    }
-
-                }
-            }
-            else
-            {
-                MessageBox.Show("Markera kategorin du vill sortera efter i listan nedanför");
-            }
-        }
+       
+        
 
 
-        private void btnShowAllFeeds_Click(object sender, EventArgs e)
-        {
-            UpdateContent();
-            txtBoxNewName.Text = "";
-            txtUrl.Text = "";
-            
-        }
+       
     }
 
 }

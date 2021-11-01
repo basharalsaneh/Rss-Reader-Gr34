@@ -47,11 +47,6 @@ namespace Models
 
         public string Update()
         {
-            // nästa uppdatering sker om "UpdateInterval" minuter
-            // Vi hittar den tidpunkten genom att lägga till det antalet millisekunder till den 
-            // nuvarande tiden.
-            //string[] tokens = UpdateInterval.Split(' ');
-            //string retVal = tokens[0] + " " + tokens[1];
 
             double updateInterval;
             Double.TryParse(UpdateInterval, out updateInterval);

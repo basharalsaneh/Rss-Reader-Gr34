@@ -22,7 +22,7 @@ namespace DL
                 xmlSerializer.Serialize(outFile, categoryList);
             }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new SerializerException("Categories.xml", "Could not serialize to the file");
             }
@@ -39,7 +39,7 @@ namespace DL
                     return (List<Category>)xmlSerializer.Deserialize(inFile);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new SerializerException("Categories.xml", "Could not deserialize the file.");
             }

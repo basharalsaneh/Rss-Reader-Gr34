@@ -22,7 +22,7 @@ namespace DL
                 xmlSerializer.Serialize(outFile, feedList);
             }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                throw new SerializerException("Feeds.xml", "Failed serialization to file");
             }
@@ -39,7 +39,7 @@ namespace DL
                     return (List<Feed>)xmlSerializer.Deserialize(inFile);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new SerializerException("Feeds.xml", "Failed to deserialize the file.");
 

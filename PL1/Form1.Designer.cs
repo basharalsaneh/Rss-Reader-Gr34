@@ -56,10 +56,8 @@ namespace PL1
             this.btnRemoveFeed = new System.Windows.Forms.Button();
             this.txtBoxNewName = new System.Windows.Forms.TextBox();
             this.lblNewName = new System.Windows.Forms.Label();
-            this.btnSort = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblFeedUpdate = new System.Windows.Forms.Label();
-            this.btnShowAllFeeds = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCreateFeed
@@ -171,7 +169,7 @@ namespace PL1
             this.listBoxCategory.Name = "listBoxCategory";
             this.listBoxCategory.Size = new System.Drawing.Size(252, 109);
             this.listBoxCategory.TabIndex = 9;
-            this.listBoxCategory.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            this.listBoxCategory.SelectedIndexChanged += new System.EventHandler(this.listBoxCategory_SelectedIndexChanged);
             // 
             // textBoxCategory
             // 
@@ -315,16 +313,6 @@ namespace PL1
             this.lblNewName.TabIndex = 27;
             this.lblNewName.Text = "Nytt namn (frivilligt)";
             // 
-            // btnSort
-            // 
-            this.btnSort.Location = new System.Drawing.Point(98, 158);
-            this.btnSort.Name = "btnSort";
-            this.btnSort.Size = new System.Drawing.Size(75, 23);
-            this.btnSort.TabIndex = 28;
-            this.btnSort.Text = "Sortera";
-            this.btnSort.UseVisualStyleBackColor = true;
-            this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -338,24 +326,12 @@ namespace PL1
             this.lblFeedUpdate.Size = new System.Drawing.Size(0, 15);
             this.lblFeedUpdate.TabIndex = 29;
             // 
-            // btnShowAllFeeds
-            // 
-            this.btnShowAllFeeds.Location = new System.Drawing.Point(185, 158);
-            this.btnShowAllFeeds.Name = "btnShowAllFeeds";
-            this.btnShowAllFeeds.Size = new System.Drawing.Size(75, 23);
-            this.btnShowAllFeeds.TabIndex = 30;
-            this.btnShowAllFeeds.Text = "Visa alla feeds";
-            this.btnShowAllFeeds.UseVisualStyleBackColor = true;
-            this.btnShowAllFeeds.Click += new System.EventHandler(this.btnShowAllFeeds_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 426);
-            this.Controls.Add(this.btnShowAllFeeds);
             this.Controls.Add(this.lblFeedUpdate);
-            this.Controls.Add(this.btnSort);
             this.Controls.Add(this.lblNewName);
             this.Controls.Add(this.txtBoxNewName);
             this.Controls.Add(this.btnRemoveFeed);
@@ -417,10 +393,8 @@ namespace PL1
 
         private System.Windows.Forms.TextBox txtBoxNewName;
         private System.Windows.Forms.Label lblNewName;
-        private System.Windows.Forms.Button btnSort;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblFeedUpdate;
-        private System.Windows.Forms.Button btnShowAllFeeds;
     }
 }
 

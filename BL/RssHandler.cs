@@ -22,7 +22,6 @@ namespace BL
         {
             await Task.Run(() =>
             {
-                //Thread.Sleep(5000);
                 try
                 {
                     FeedHandler feedHandler = new FeedHandler();
@@ -36,8 +35,6 @@ namespace BL
                         string summary = item.Summary.Text;
                         episodeHandler.CreateEpisode(title, summary);
                     }
-
-                    //categoryHandler.GetCategoryByName(category);
 
                     feedHandler.CreateFeed(url, episodeHandler.GetAllEpisodes(), episodeHandler.GetAllEpisodes().Count, syndicationFeed.Title.Text, category, frekvens);
                 }
@@ -53,21 +50,13 @@ namespace BL
 
         public void UpdateRss(string url, string feedName, Category category, string frekvens)
         {
-
+            try
             {
-                //Thread.Sleep(5000);
 
                 {
                     FeedHandler feedHandler = new FeedHandler();
                     EpisodeHandler episodeHandler = new EpisodeHandler();
-                    CategoryHandler categoryHandler = new CategoryHandler();
-                    List<Episode> updatedEpisodeList = new List<Episode>();
-
-                    //foreach(Episode episode in episodes)
-                    //{
-                    //    episodeHandler.RemoveEpisode(episode);
-                    //}
-
+ 
                     SyndicationFeed syndicationFeed = SyndicationFeed.Load(XmlReader.Create(url));
                     foreach (SyndicationItem item in syndicationFeed.Items)
                     {
@@ -76,20 +65,14 @@ namespace BL
                         episodeHandler.CreateEpisode(title, summary);
                     }
 
-                    //foreach(Episode episode in episodeHandler.GetAllEpisodes())
-                    //{
-                    //    updatedEpisodeList.Add(episode);
-                    //}
-
-                    //categoryHandler.GetCategoryByName(category);
-
                     feedHandler.CreateFeed(url, episodeHandler.GetAllEpisodes(), episodeHandler.GetAllEpisodes().Count, feedName, category, frekvens);
-                    //Feed feed = feedHandler.GetFeedByUrl(url);
-                    ////return episodeHandler.GetAllEpisodes();
-                    //return feed;
 
                 }
                 
+            }
+            catch(Exception)
+            {
+
             }
            
 
