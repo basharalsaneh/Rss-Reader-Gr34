@@ -11,7 +11,8 @@ namespace DL
     public class FeedRepository : IRepository<Feed>
     {
        private static List<Feed> listOfFeeds = new List<Feed>();
-       FeedSerializer serializer = new FeedSerializer();
+        //FeedSerializer serializer = new FeedSerializer();
+        FeedSerializer serializer = new FeedSerializer();
 
 
         public FeedRepository()
@@ -30,12 +31,17 @@ namespace DL
 
         public List<Feed> GetAll()
         {
-
             List<Feed> listOfFeedsDeserialized = new List<Feed>();
-            
+            try
+            {
+
                 listOfFeedsDeserialized = serializer.Deserialize();
+            }
+            catch(Exception)
+            {
+
+            }
             
-           
 
             return listOfFeedsDeserialized;
         }

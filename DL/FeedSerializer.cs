@@ -9,7 +9,7 @@ using System.IO;
 
 namespace DL
 {
-    class FeedSerializer : Serializer<Feed> 
+    class FeedSerializer : Serializer<Feed>
     {
         public override void Serialize(List<Feed> feedList)
         {
@@ -41,7 +41,7 @@ namespace DL
             }
             catch (Exception)
             {
-                throw new SerializerException("Feeds.xml", "Failed to deserialize the file.");
+               throw new SerializerException("Feeds.xml", "Failed to deserialize the file.");
 
             }
         }

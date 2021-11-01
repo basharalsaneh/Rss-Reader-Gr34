@@ -9,40 +9,41 @@ using System.IO;
 
 namespace DL
 {
-    class CategorySerializer : Serializer<Category>
+    class CategorySerializer : Serializer<Category> 
     {
-        public override void Serialize(List<Category> categoryList)
-        {
-            try
+            public override void Serialize(List<Category> categoryList)
             {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Category>));
-            using (FileStream outFile = new FileStream("Categories.xml", FileMode.Create,
-                FileAccess.Write))
-            {
-                xmlSerializer.Serialize(outFile, categoryList);
-            }
-            }
-            catch (Exception)
-            {
-                throw new SerializerException("Categories.xml", "Could not serialize to the file");
-            }
-        }
-
-        public override List<Category> Deserialize()
-        {
-            try
-            {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Category>));
-                using (FileStream inFile = new FileStream("Categories.xml", FileMode.Open,
-                    FileAccess.Read))
+                try
                 {
-                    return (List<Category>)xmlSerializer.Deserialize(inFile);
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Category>));
+                using (FileStream outFile = new FileStream("Categories.xml", FileMode.Create,
+                    FileAccess.Write))
+                {
+                    xmlSerializer.Serialize(outFile, categoryList);
+                }
+                }
+                catch (Exception)
+                {
+                    throw new SerializerException("Categories.xml", "Could not serialize to the file");
                 }
             }
-            catch (Exception)
+
+            public override List<Category> Deserialize()
             {
-                throw new SerializerException("Categories.xml", "Could not deserialize the file.");
+                try
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Category>));
+                    using (FileStream inFile = new FileStream("Categories.xml", FileMode.Open,
+                        FileAccess.Read))
+                    {
+                        return (List<Category>)xmlSerializer.Deserialize(inFile);
+                    }
+                }
+                catch (Exception)
+                {
+                    throw new SerializerException("Categories.xml", "Could not deserialize the file.");
+                }
             }
-        }
+        
     }
 }
