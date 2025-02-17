@@ -36,9 +36,10 @@ View and manage previously scanned QR codes in the history page.
 
 Use the QR code generator to create new QR codes.
 
-🔗 GitHub Repository
+🔗 GitHub Repository & Demo Video
 
 QuickReaderQR - GitHub
+🔗 Demo Video
 
 📂 Installation & Setup
 
